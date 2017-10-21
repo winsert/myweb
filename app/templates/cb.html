@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>MyWeb v0.1</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+
+<table border="1">
+<th>名称</th>
+<th>代码</th>
+<th>现价</th>
+<th>正股名称</th>
+<th>正股代码</th>
+<th>股价</th>
+<th>涨跌幅</th>
+<th>建仓价</th>
+<th>加仓价</th>
+<th>重仓价</th>
+<th>说明</th>
+<th>转股价</th>
+<th>转股起始日</th>
+<th>溢价率</th>
+<th>持仓</th>
+<th>剩余年限</th>
+<th>到期价值</th>
+<th>到期年化</th>
+<th>强赎天数</th>
+
+{% for cb in cx %}
+<tr>
+{% for cc in cb %}
+<td>{{ cc }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+{% for eb in ex %}
+<tr>
+{% for ee in eb %}
+<td>{{ ee }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+</table>
+
+<a href='./index'><h1>返回</h1></a>
+
+{% endblock %}
+</body>
+</html>
