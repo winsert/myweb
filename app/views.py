@@ -12,6 +12,7 @@ from cx_cx import getCX #查询可转债数据
 from cx_ex import getEX #查询交换债数据
 from qcx_cx import getQCX #查询所有可转债数据
 from qcx_ex import getQEX #查询所有交换债数据
+from cx_tk import getTK #查询所有可转债，交换债的条款
 
 @app.route('/')
 @app.route('/index')
@@ -30,3 +31,8 @@ def cb():
     qcx = getQCX()
     qex = getQEX()
     return render_template("cb.html", cx=qcx, ex=qex)
+
+@app.route('/tk')
+def tk():
+    tk = getTK()
+    return render_template("tk.html", tk_list=tk)
