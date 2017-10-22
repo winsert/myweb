@@ -7,7 +7,6 @@ __author__ = 'winsert@163.com'
 
 import sqlite3, urllib2
 from datetime import datetime
-#from cx_ex import getEX
 
 # 用于解析URL页面
 def bsObjForm(url):
