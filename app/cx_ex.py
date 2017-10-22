@@ -94,7 +94,7 @@ def getEX():
         conn.close()
         #print tmp
 
-        for cc in tmp[:-1]:
+        for cc in tmp:
             cList = []
             if cc[3] != 'QS' and cc[15] == 'e':
                 name = cc[0] #名称
