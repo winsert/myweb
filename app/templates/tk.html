@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>MyWeb v0.1</title>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+
+<table border="1">
+<th>名称</th>
+<th>代码</th>
+<th>转股起始日</th>
+<th>转股价</th>
+<th>回售起始日</th>
+<th>回售价</th>
+<th>到期日</th>
+<th>赎回价</th>
+<th>转股价下调条款</th>
+<th>强制赎回条款</th>
+<th>回售条款</th>
+
+{% for tk in tk_list %}
+<tr>
+{% for tt in tk %}
+<td>{{ tt }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+{% for eb in ex %}
+<tr>
+{% for ee in eb %}
+<td>{{ ee }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+</table>
+
+<a href='./index'><h1>返回</h1></a>
+
+{% endblock %}
+</body>
+</html>
