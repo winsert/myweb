@@ -33,7 +33,7 @@ def getJJ():
             #jj_name = tmp_list[0][-4:] #基金名称
             new_price = float(tmp_list[1]) #获取基金最新价格
             zr_price = float(tmp_list[3]) #获取基金昨日价格
-            print zr_price
+            #print zr_price
             #zdf = round((new_price/zr_price - 1)*100, 3) #计算涨跌
             if new_price == 0.0:
                 jj_list.append(zr_price)
