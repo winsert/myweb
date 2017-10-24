@@ -149,7 +149,7 @@ def getEX():
                 dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
                 #cList.append(dqsyl)
                 dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
-                cList.append(dqnh)
+                cList.insert(0, dqnh)
         
                 qs = cc[16] #已强赎天数
                 cList.append(qs)
@@ -159,6 +159,7 @@ def getEX():
                 if cList[2] <= cList[7]: #交换债现价<=建仓价
                     ccList.append(cList)
 
+        ccList.sort()
         #print ccList
         return ccList
 
