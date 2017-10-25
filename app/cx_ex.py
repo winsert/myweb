@@ -62,7 +62,7 @@ def getSYNX(dqr):
 
 # 计算到期价值
 def getDQJZ(synx, shj,  ll):
-    y = synx #剩余年限
+    y = int(synx) #剩余年限
     j = float(shj) #赎回价
     mnlv = ll #每年的利率
     dqjz = 0.0
@@ -77,7 +77,6 @@ def getDQJZ(synx, shj,  ll):
 
     dqjz = dqjz + j + float(l[-1])
     return dqjz
-
 
 # 主程序
 def getEX():
@@ -149,6 +148,7 @@ def getEX():
                 dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
                 #cList.append(dqsyl)
                 dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
+                #cList.append(dqnh)
                 cList.insert(0, dqnh)
         
                 qs = cc[16] #已强赎天数
@@ -156,7 +156,7 @@ def getEX():
                 #qss = cc[17] #剩余天数
                 #cList.append(qs)
 
-                if cList[2] <= cList[7]: #交换债现价<=建仓价
+                if cList[3] <= cList[8]: #交换债现价<=建仓价
                     ccList.append(cList)
 
         ccList.sort()
