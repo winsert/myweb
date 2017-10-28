@@ -62,7 +62,7 @@ def getSYNX(dqr):
 
 # 计算到期价值
 def getDQJZ(synx, shj,  ll):
-    y = int(synx) #剩余年限
+    y = synx #剩余年限
     j = float(shj) #赎回价
     mnlv = ll #每年的利率
     dqjz = 0.0

@@ -57,12 +57,12 @@ def getSYNX(dqr):
     ymd = dqr #到期日
     y = ymd.split('-')
     d1 = datetime(int(y[0]), int(y[1]), int(y[2]), 0, 0)
-    synx = round((d1 - datetime.now()).days / 365.00, 2)
+    synx = round((d1 - datetime.now()).days / 365.00, 3)
     return synx
 
 # 计算到期价值
 def getDQJZ(synx, shj,  ll):
-    y = int(synx) #剩余年限
+    y = synx #剩余年限
     j = float(shj) #赎回价
     mnlv = ll #每年的利率
     dqjz = 0.0
