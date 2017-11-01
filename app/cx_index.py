@@ -33,7 +33,7 @@ def getIndex():
     msg_list =[]
     index_msg = ''
 
-    index = {u'上证50':'sh000016', u'沪深300':'sz399300', u'中证500':'sh000905', u'创业板':'sz399006', u'B股':'sh000003', u'国债':'sh000012'} #要查询的指数代码
+    index = {u'上证50':'sh000016', u'沪深300':'sz399300', u'中证500':'sh000905', u'创业板':'sz399006'} #要查询的指数代码
     
     for k in index.keys():
         value = index.get(k)
