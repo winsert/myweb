@@ -17,7 +17,7 @@ def bsObjForm(url):
 # 用于查询外汇的价格
 def getSP():
 
-    sp_dict = {u'COMEX Gold':'GC', 'COMEX Silver':'SI', 'NYMEX Oil':'CL'}
+    sp_dict = {u'COMEX Gold':'GC', 'NYMEX Oil':'CL'}
     sp_list = []
     sp_msg = ''
 
