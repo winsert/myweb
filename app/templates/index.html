@@ -36,6 +36,28 @@
 <td>
 <table border="1">
 <tr>
+<td>逆回购</td>
+<td>131810</td>
+<td>204001</td>
+</tr>
+<tr>
+<td>现价</td>
+{% for nhg in nhg_list %}
+{% if nhg>8.0 %}
+<td bgcolor="#FF0000">{{ nhg }}</td>
+{% else %}
+<td>{{ nhg }}</td>
+{% endif %}
+{% endfor %}
+</tr>
+</table>
+</td>
+
+<td>*</td>
+
+<td>
+<table border="1">
+<tr>
 <td>基金</td>
 <td>嘉实元合</td>
 <td>合润A</td>
