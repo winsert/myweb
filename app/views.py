@@ -13,18 +13,20 @@ from cx_ex import getEX #查询交换债数据
 from qcx_cx import getQCX #查询所有可转债数据
 from qcx_ex import getQEX #查询所有交换债数据
 from cx_tk import getTK #查询所有可转债，交换债的条款
+from cx_nhg import getNHG #查询逆回购数据
 
 @app.route('/')
 @app.route('/index')
 def index():
     cpu = get_cpu_temp()
     index_list = getIndex()
+    nhg = getNHG()
     jj = getJJ()
     wh = getWH()
     sp = getSP()
     cx = getCX()
     ex = getEX()
-    return render_template("index.html", cpu=cpu, index_list=index_list, jj=jj, wh_list=wh, sp_list=sp, cx=cx, ex=ex)
+    return render_template("index.html", cpu=cpu, index_list=index_list, nhg_list=nhg, jj=jj, wh_list=wh, sp_list=sp, cx=cx, ex=ex)
 
 @app.route('/cb')
 def cb():
