@@ -156,7 +156,7 @@ def getEX():
                 #qss = cc[17] #剩余天数
                 #cList.append(qs)
 
-                if cList[3] <= cList[8]: #交换债现价<=建仓价
+                if (cList[3] <= cList[8] or cList[3] >= 130.00) and cList[15] != 0: #交换债现价<=建仓价
                     ccList.append(cList)
 
         ccList.sort()
