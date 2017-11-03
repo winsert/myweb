@@ -164,6 +164,7 @@ def getCX():
         return ccList
 
     except Exception, e :
+        #ccList.append(name)
         ccList.append(e)
         return ccList
 
