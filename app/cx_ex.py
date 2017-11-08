@@ -126,7 +126,7 @@ def getEX():
                 #cList.append(zgj)
                 cList.insert(7, zgj)
                 zgqsr = cc[18] #转股起始日
-                cList.append(zgqsr)
+                #cList.append(zgqsr)
                 zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
                 #cList.append(zgjz)
                 yjl = round((zz-zgjz)/zgjz*100, 2) #计算溢价率
@@ -158,7 +158,7 @@ def getEX():
                 #qss = cc[17] #剩余天数
                 #cList.append(qs)
 
-                if (cList[3] <= cList[10] or cList[3] >= 130.00) and cList[15] != 0: #交换债现价<=建仓价
+                if (cList[3] <= cList[10] or cList[3] >= 130.00) and cList[14] != 0: #交换债现价<=建仓价
                     ccList.append(cList)
 
         ccList.sort()
