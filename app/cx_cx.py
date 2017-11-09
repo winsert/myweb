@@ -46,7 +46,7 @@ def getZZ(zzCode):
     tmp_list = resp.split(',')
     zz_price = float(tmp_list[3]) #获取转债实时价格
     if zz_price == 0:
-        zz_price = 111.00
+        zz_price = float(tmp_list[2]) #获取转债昨日收盘价
         return zz_price
     else:
         return zz_price
