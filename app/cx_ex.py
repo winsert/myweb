@@ -171,4 +171,5 @@ def getEX():
 
 if __name__ == '__main__':
     cx = getEX()
-    print cx
+    for msg in cx:
+        print msg
