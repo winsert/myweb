@@ -30,7 +30,7 @@ def getZG(zgCode):
             zg_zdf = round((zg_price/zgzr_price)*100, 2) -100 
             return zg_name, zg_price, zg_zdf
         else:
-            zg_price = u'停牌'
+            zg_price = 0.0
             zg_zdf = 0.0
             return zg_name, zg_price, zg_zdf
     except Exception, e:
@@ -126,12 +126,18 @@ def getQCX():
                 cList.append(zgj)
                 zgqsr = cc[18] #转股起始日
                 cList.append(zgqsr)
-                zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
-                #cList.append(zgjz)
-                yjl = round((zz-zgjz)/zgjz*100, 2) #计算溢价率
-                cList.append(yjl)
-                #qsj = round((zgj * 1.3), 2) #计算强赎价
-                #qsl = round((zg/zgj -1)*100, 2) #计算强赎率
+
+                if zg_price != 0:
+                    zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
+                    #cList.append(zgjz)
+                    yjl = round((zz-zgjz)/zgjz*100, 2) #计算溢价率
+                    cList.append(yjl)
+                    #qsj = round((zgj * 1.3), 2) #计算强赎价
+                    #qsl = round((zg/zgj -1)*100, 2) #计算强赎率
+                else:
+                    yjl = 0.0
+                    cList.append(yjl)
+                    cList[5] = u"停牌"
 
                 position = cc[12] #已购买的张数
                 cList.append(position)
