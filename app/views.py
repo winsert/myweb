@@ -12,6 +12,8 @@ from cx_cx import getCX #查询可转债数据
 from cx_ex import getEX #查询交换债数据
 from qcx_cx import getQCX #查询所有可转债数据
 from qcx_ex import getQEX #查询所有交换债数据
+from mcx_cx import getMCX #mobile查询可转债数据
+from mcx_ex import getMEX #mobile查询交换债数据
 from cx_tk import getTK #查询所有可转债，交换债的条款
 from cx_nhg import getNHG #查询逆回购数据
 
@@ -38,3 +40,10 @@ def cb():
 def tk():
     tk = getTK()
     return render_template("tk.html", tk_list=tk)
+
+@app.route('/mobile')
+def mobi():
+    cpu = get_cpu_temp()
+    mcx = getMCX()
+    mex = getMEX()
+    return render_template("mobile.html", cpu=cpu, cx=mcx, ex=mex)
