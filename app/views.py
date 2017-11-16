@@ -16,6 +16,8 @@ from mcx_cx import getMCX #mobile查询可转债数据
 from mcx_ex import getMEX #mobile查询交换债数据
 from cx_tk import getTK #查询所有可转债，交换债的条款
 from cx_nhg import getNHG #查询逆回购数据
+from cx_weather import getWeather #查询天气实况
+from cx_pm import getPM #查询空气质量
 
 @app.route('/')
 @app.route('/index')
@@ -43,7 +45,12 @@ def tk():
 
 @app.route('/mobile')
 def mobi():
-    cpu = get_cpu_temp()
     mcx = getMCX()
     mex = getMEX()
-    return render_template("mobile.html", cpu=cpu, cx=mcx, ex=mex)
+    return render_template("mobile.html", cx=mcx, ex=mex)
+
+@app.route('/weather')
+def weather():
+    weather_msg = getWeather()
+    pm_msg = getPM()
+    return render_template("weather.html", weather_list = weather_msg, pm_list = pm_msg)
