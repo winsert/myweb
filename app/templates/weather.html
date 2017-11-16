@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>MyWeb v0.1 - Weather</title>
+</head>
+
+<body>
+<h1 align="center">天气实况</h1>
+<hr />
+<hr />
+
+{% for weather_msg in weather_list %}
+<p><font size="7">{{ weather_msg }}</font></p>
+{% endfor %}
+
+<hr />
+
+{% for pm_msg in pm_list %}
+<p><font size="7">{{ pm_msg }}</font></p>
+{% endfor %}
+
+</body>
+
+</html>
