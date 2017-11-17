@@ -11,10 +11,12 @@
 <table border="1">
 <tr>
 <td>指数</td>
+<td>深成</td>
 <td>沪深300</td>
 <td>上证50</td>
-<td>中证500</td>
 <td>创业板</td>
+<td>中证500</td>
+<td>上证</td>
 </tr>
 <tr>
 <td>涨跌</td>
@@ -81,21 +83,12 @@
 <table border="1">
 <tr>
 <td>AUD:CNY</td>
-<td>涨跌</td>
 <td>HKD:CNY</td>
-<td>涨跌</td>
 <td>USD:CNY</td>
-<td>涨跌</td>
 </tr>
 <tr>
 {% for wh in wh_list %}
-{% for w in wh %}
-{% if w>=-0.3 and w<=0.3 %}
-<td bgcolor="#00FF00">{{ w }}</td>
-{% else %}
-<td>{{ w }}</td>
-{% endif %}
-{% endfor %}
+<td>{{ wh }}</td>
 {% endfor %}
 </tr>
 </table>
