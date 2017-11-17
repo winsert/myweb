@@ -33,11 +33,12 @@ def getIndex():
     msg_list =[]
     index_msg = ''
 
-    index = {u'上证50':'sh000016', u'沪深300':'sz399300', u'中证500':'sh000905', u'创业板':'sz399006'} #要查询的指数代码
+    index = {u'上证':'sh000001', u'深成':'sz399001', u'上证50':'sh000016', u'沪深300':'sz399300', u'中证500':'sh000905', u'创业板':'sz399006'} #要查询的指数代码
     
     for k in index.keys():
         value = index.get(k)
         index_zz = float(cxIndex(value))
+        print k, value, index_zz
         msg_list.append(index_zz)
 
     #print msg_list
