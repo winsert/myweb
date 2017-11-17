@@ -3,7 +3,33 @@
 <title>MyWeb v0.1 - Mobile</title>
 </head>
 <body>
+
+<table border="1" width="100%" style="font-size:40px;">
+<tr>
+<td>指数</td>
+<td>深成</td>
+<td>沪深300</td>
+<td>上证50</td>
+<td>创业板</td>
+<td>中证500</td>
+<td>上证</td>
+</tr>
+<tr>
+<td>涨跌</td>
+{% for index_data in index_list %}
+{% if index_data>1 %}
+<td bgcolor="#FF0000">{{ index_data }}</td>
+{% elif index_data<-1 %}
+<td bgcolor="#00FF00">{{ index_data }}</td>
+{% else %}
+<td>{{ index_data }}</td>
+{% endif %}
+{% endfor %}
+</tr>
+</table>
+
 <h1>不挑戏、不逃戏、不入戏、不调戏</h1>
+
 <table border="1" width="100%" style="font-size:40px;">
 <th>年化</th>
 <th>名称</th>
