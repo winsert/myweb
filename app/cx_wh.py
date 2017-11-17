@@ -18,11 +18,10 @@ def bsObjForm(url):
 def getWH():
 
     wh_dict = {'usdcny':6.72, 'audcny':5.30, 'hkdcny':0.86}
-    wh_list = []
+    whlist = []
 
     try:
         for key in wh_dict:
-            whlist = []
             #print key
             #print wh_dict[key]
             url = "http://hq.sinajs.cn/list=fx_s"+key #生成用于查询的URL
@@ -31,16 +30,15 @@ def getWH():
             #print tmp_list
             new_price = float(tmp_list[1]) #获取实时价格
             whlist.append(new_price)
-            zr_price = float(tmp_list[3]) #获取昨日收盘价
-            zdf = round((new_price/zr_price - 1)*100, 3)
-            whlist.append(zdf)
+            #zr_price = float(tmp_list[3]) #获取昨日收盘价
+            #zdf = round((new_price/zr_price - 1)*100, 3)
+            #whlist.append(zdf)
 
-            wh_list.append(whlist)
-        return wh_list
+        return whlist
 
     except Exception, e:
         print 'getWH ERROR :', e
-        wh_list.append(e)
+        whlist.append(e)
         return wh_list
 
 if __name__ == '__main__':
