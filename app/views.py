@@ -45,9 +45,10 @@ def tk():
 
 @app.route('/mobile')
 def mobi():
+    index_list = getIndex()
     mcx = getMCX()
     mex = getMEX()
-    return render_template("mobile.html", cx=mcx, ex=mex)
+    return render_template("mobile.html", index_list=index_list, cx=mcx, ex=mex)
 
 @app.route('/weather')
 def weather():
