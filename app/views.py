@@ -18,6 +18,7 @@ from cx_tk import getTK #查询所有可转债，交换债的条款
 from cx_nhg import getNHG #查询逆回购数据
 from cx_weather import getWeather #查询天气实况
 from cx_pm import getPM #查询空气质量
+from zb import getZB #查询转债市值占比
 
 @app.route('/')
 @app.route('/index')
@@ -31,6 +32,11 @@ def index():
     cx = getCX()
     ex = getEX()
     return render_template("index.html", cpu=cpu, index_list=index_list, nhg_list=nhg, jj=jj, wh_list=wh, sp_list=sp, cx=cx, ex=ex)
+
+@app.route('/zb')
+def zb():
+    zb = getZB()
+    return render_template("zb.html", zb_list=zb)
 
 @app.route('/cb')
 def cb():
