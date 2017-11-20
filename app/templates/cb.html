@@ -29,7 +29,11 @@
 {% for cb in cx %}
 <tr>
 {% for cc in cb %}
+{% if cc<0.0 %}
+<td bgcolor="#FF0000">{{ cc }}</td>
+{% else %}
 <td>{{ cc }}</td>
+{% endif %}
 {% endfor %}
 </tr>
 {% endfor %}
@@ -37,7 +41,11 @@
 {% for eb in ex %}
 <tr>
 {% for ee in eb %}
+{% if ee<0.0 %}
+<td bgcolor="#FF0000">{{ ee }}</td>
+{% else %}
 <td>{{ ee }}</td>
+{% endif %}
 {% endfor %}
 </tr>
 {% endfor %}
