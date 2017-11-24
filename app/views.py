@@ -35,8 +35,8 @@ def index():
 
 @app.route('/zb')
 def zb():
-    zb = getZB()
-    return render_template("zb.html", zb_list=zb)
+    zb, sztotal, dqtotal, diff = getZB()
+    return render_template("zb.html", zb_list=zb, sztotal=sztotal, dqtotal=dqtotal, diff=diff)
 
 @app.route('/cb')
 def cb():

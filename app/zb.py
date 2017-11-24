@@ -28,7 +28,33 @@ def getZZ(zzCode):
     else:
         return zz_price
 
-# 主程序
+# 计算剩余年限
+def getSYNX(dqr):
+    ymd = dqr #到期日
+    y = ymd.split('-')
+    d1 = datetime(int(y[0]), int(y[1]), int(y[2]), 0, 0)
+    synx = round((d1 - datetime.now()).days / 365.00, 2)
+    return synx
+
+# 计算到期价值
+def getDQJZ(synx, shj,  ll):
+    y = synx #剩余年限
+    j = float(shj) #赎回价
+    mnlv = ll #每年的利率
+    dqjz = 0.0
+
+    inty = int(y)
+    if y > inty: 
+        y = inty + 1
+
+    l = mnlv.split(',') #转成列表
+    for i in range (len(l)-y, len(l)-1):
+        dqjz = dqjz +round(float(l[i])*0.8, 2)
+
+    dqjz = dqjz + j
+    return dqjz
+
+# 进行占比分析
 def getZB():
     
     ccList = []
@@ -37,7 +63,7 @@ def getZB():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Prefix, Code, position from cb ORDER BY Code"
+        sql = "select name, Prefix, Code, position, dqr, shj, ll from cb ORDER BY Code"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -56,28 +82,44 @@ def getZB():
                 cList.append(zz)
                 position = cc[3] #已购买的张数
                 cList.append(position)
-                subtotal = round((zz * position), 2) #计算转债价格X持仓数量
-                cList.append(subtotal)
+                total1 = round((zz * position), 2) #计算转债价格X持仓数量
+                cList.append(total1)
+
+                dqr = cc[4] #到期日
+                synx = getSYNX(dqr) #计算剩余年限
+                shj = cc[5] #赎回价
+                ll = cc[6] #每年的利率
+                dqjz = getDQJZ(synx, shj, ll) #计算到期价值
+                cList.append(dqjz)
+                total2 = round((dqjz * position), 2) #到期价值X持仓数量
+                cList.append(total2)
                 ccList.append(cList)
 
-        total = 0.0
-        for x in ccList: #计算总市值
-            total = total + x[4]
+        sztotal = 0.0 #按市价计算总市值
+        for x in ccList:
+            sztotal = sztotal + x[4]
 
-        for y in ccList: #计算占比
-            zb = round((y[4] / total)*100, 2)
-            y.append(zb)
+        for y in ccList: #按市价计算占比
+            zb = round((y[4] / sztotal)*100, 2)
+            y.insert(5, zb)
             zbList.append(y)
 
-        return zbList
+        dqtotal = 0.0 #按到期价值计算总市值
+        for z in zbList:
+            dqtotal = dqtotal + z[7]
+
+        diff = dqtotal - sztotal
+
+        return zbList, sztotal, dqtotal, diff
 
     except Exception, e :
         #ccList.append(name)
-        error_msg = u'zb.py的主程序报错：'+str(e)
+        error_msg = u'zb.py的getZB()报错：'+str(e)
         ccList.append(e)
         return ccList
 
 if __name__ == '__main__':
-    mcx = getZB()
-    for msg in mcx:
+    zb, sztotal, dqtotal, diff = getZB()
+    for msg in zb:
         print msg
+    print u"按到期价值计算的总市值是="+str(dqtotal)+u"元，按市价计算的总市值="+str(sztotal)+u"元，差额="+str(diff)
