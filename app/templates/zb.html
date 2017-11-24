@@ -4,15 +4,18 @@
 </head>
 <body>
 
-<h1>不挑戏、不逃戏、不入戏、不调戏</h1>
-
+<h2>按 到期价值 计算的总市值是 = {{ dqtotal }} 元</h2>
+<h2>按 市价 计算的总市值 = {{ sztotal }} 元</h2>
+<h2>差额 = {{ diff }} 元</h2>
 <table border="1"  style="font-size:20px;">
 <th>名称</th>
 <th>代码</th>
 <th>现价</th>
 <th>持仓</th>
 <th>市值</th>
-<th>占比</th>
+<th>市值占比</th>
+<th>到期价值</th>
+<th>到期市值</th>
 
 {% for zb in zb_list %}
 <tr>
