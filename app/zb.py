@@ -46,6 +46,8 @@ def getDQJZ(synx, shj,  ll):
     inty = int(y)
     if y > inty: 
         y = inty + 1
+    else:
+        y = int(y)
 
     l = mnlv.split(',') #转成列表
     for i in range (len(l)-y, len(l)-1):
@@ -119,6 +121,7 @@ def getZB():
         return ccList
 
 if __name__ == '__main__':
+    #getZB()
     zb, sztotal, dqtotal, diff = getZB()
     for msg in zb:
         print msg
