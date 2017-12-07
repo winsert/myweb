@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>MyWeb v0.1 - Mobile</title>
+</head>
+<body>
+
+<h2>**************** 不挑戏、不逃戏、不入戏、不调戏 ****************</h2>
+
+<table border="1">
+<th>到期年化%</th>
+<th>名称</th>
+<th>最新价</th>
+<th>建仓价</th>
+<th>加仓价</th>
+<th>重仓价</th>
+<th>建仓说明</th>
+<th>剩余年限</th>
+<th>到期价值</th>
+
+{% for cb in wxcx %}
+<tr>
+{% for cc in cb %}
+<td>{{ cc }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+{% for eb in wxex %}
+<tr>
+{% for ee in eb %}
+<td>{{ ee }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+</table>
+
+</body>
+</html>
