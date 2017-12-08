@@ -70,6 +70,8 @@ def getDQJZ(synx, shj,  ll):
     inty = int(y)
     if y > inty: 
         y = inty + 1
+    else:
+        y = int(y)
 
     l = mnlv.split(',') #转成列表
     for i in range (len(l)-y, len(l)-1):
@@ -97,6 +99,7 @@ def getEX():
             cList = []
             if cc[3] != 'QS' and cc[15] == 'e':
                 name = cc[0] #名称
+                print name
                 cList.append(name)
                 code = cc[1] #代码
                 cList.append(code)
@@ -163,6 +166,7 @@ def getEX():
                 cList.append(qs)
                 #qss = cc[17] #剩余天数
                 #cList.append(qs)
+                print cList
 
                 if (cList[3] <= cList[10] or cList[3] >= 130.00) and cList[14] != 0: #交换债现价<=建仓价
                     ccList.append(cList)
