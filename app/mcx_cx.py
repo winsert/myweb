@@ -69,6 +69,8 @@ def getDQJZ(synx, shj,  ll):
     inty = int(y)
     if y > inty: 
         y = inty + 1
+    else:
+        y = inty
 
     l = mnlv.split(',') #转成列表
     for i in range (len(l)-y, len(l)-1):
