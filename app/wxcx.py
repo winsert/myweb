@@ -172,12 +172,15 @@ def getWXCX():
         return ccList
 
     except Exception, e :
-        #ccList.append(name)
+        print name
         error_msg = u'主程序报错：'+str(e)
+        print error_msg
+        #ccList.append(name)
         ccList.append(e)
         return ccList
 
 if __name__ == '__main__':
     wxcx = getWXCX()
+    #print wxcx
     for msg in wxcx:
         print msg
