@@ -96,7 +96,8 @@ def getMCX():
 
         for cc in tmp:
             cList = []
-            if cc[3] != 'QS' and cc[15] != 'e':
+            #if cc[3] != 'QS' and cc[15] != 'e':
+            if cc[3] != 'QS' and cc[15] != 'e' and cc[6] != 0.0:
                 name = cc[0] #名称
                 cList.append(name)
                 code = cc[1] #代码
