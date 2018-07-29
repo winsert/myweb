@@ -53,10 +53,11 @@ def tk():
 
 @app.route('/mobile')
 def mobi():
+    cpu = get_cpu_temp()
     index_list = getIndex()
     mcx = getMCX()
     mex = getMEX()
-    return render_template("mobile.html", index_list=index_list, cx=mcx, ex=mex)
+    return render_template("mobile.html", cpu =cpu, index_list=index_list, cx=mcx, ex=mex)
 
 @app.route('/weixin')
 def weixin():
