@@ -37,9 +37,14 @@ APP/
 
     mcx_ex.py       #用于mobile.html页面显示交换债三线数据
 
+    mhome.py        #用于支持APP“管家婆”
+    mhome.db        #APP"管家婆"的数据库
+
     qcx_cx.py       #用于查询全部可转债数据
 
     qcx_ex.py       #用于查询全部交换债数据
+
+    web_cb          #用于支持APP(CBond)查询可转债信息
 
     zb.py           #用于转债值占比分析
 
