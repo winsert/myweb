@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-from flask import render_template
+from flask import render_template, request
 from app import app
 from cx_cpu import get_cpu_temp #查询CPU温度
 from cx_index import getIndex #查询证券指数
@@ -21,6 +21,7 @@ from cx_nhg import getNHG #查询逆回购数据
 from cx_weather import getWeather #查询天气实况
 from cx_pm import getPM #查询空气质量
 from zb import getZB #查询转债市值占比
+from web_cb import webCB #查询指定转债的基本数据
 
 @app.route('/')
 @app.route('/index')
@@ -70,3 +71,13 @@ def weather():
     weather_msg = getWeather()
     pm_msg = getPM()
     return render_template("weather.html", weather_list = weather_msg, pm_list = pm_msg)
+
+@app.route('/webCBCX', methods = ['GET'])
+def webCBCX():
+    if request.method == "GET":
+        print "Get CB msg:"
+        lab = request.args.get('lab')
+        print lab
+        value = webCB(lab)
+        print value
+        return value
