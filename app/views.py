@@ -21,6 +21,9 @@ from cx_nhg import getNHG #查询逆回购数据
 from cx_weather import getWeather #查询天气实况
 from cx_pm import getPM #查询空气质量
 from zb import getZB #查询转债市值占比
+from mhome import MHSearch #从mhome.db中查询指定i品名lab的value值
+from mhome import MHModi #按指定品名lab修改value值
+from mhome import MHAS #按指定品名lab修改value中的数量值+-
 from web_cb import webCB #查询指定转债的基本数据
 
 @app.route('/')
@@ -72,12 +75,46 @@ def weather():
     pm_msg = getPM()
     return render_template("weather.html", weather_list = weather_msg, pm_list = pm_msg)
 
+@app.route('/mhSearch', methods = ['GET'])
+def mhSerach():
+    if request.method == "GET":
+        print 'Search value : ',
+        lab = request.args.get('lab')
+        #print lab
+        value = MHSearch(lab)
+        print value
+        print
+        return value
+
+@app.route('/mhModi', methods = ['GET'])
+def mhModi():
+    if request.method == "GET":
+        print "Modi value : "
+        lab = request.args.get('lab')
+        print 'lab = ', lab
+        value = MHModi(lab)
+        print value
+        print
+        return value
+
+@app.route('/mhAS', methods = ['GET'])
+def mhAS():
+    if request.method == "GET":
+        print "Add/Subtract : "
+        lab = request.args.get('lab')
+        print 'lab = ', lab
+        value = MHAS(lab)
+        print value
+        print
+        return value
+
 @app.route('/webCBCX', methods = ['GET'])
 def webCBCX():
     if request.method == "GET":
-        print "Get CB msg:"
+        print "Get CB msg : "
         lab = request.args.get('lab')
         print lab
         value = webCB(lab)
         print value
+        print
         return value
