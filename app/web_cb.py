@@ -124,13 +124,13 @@ def webCB(alias):
 
         if float(tmp[0][10]) == 0.0:
             #msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+u'无'+'|'+u'无'+'|'+str(dqr)+'|'+str(synx)
-            msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+u'无'+'|'+u'无'+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs
+            msg = tmp[0][0]+'|'+zzcode+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+u'无'+'|'+u'无'+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs
             #print msg
             return msg
         else:
             #msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg
             #msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+str(tmp[0][9])+'|'+str(tmp[0][10])+'|'+str(dqr)+'|'+str(synx)
-            msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+str(tmp[0][9])+'|'+str(tmp[0][10])+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs
+            msg = tmp[0][0]+'|'+zzcode+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+str(tmp[0][9])+'|'+str(tmp[0][10])+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs
             #print msg
             return msg
 
