@@ -74,7 +74,7 @@ def webCB(alias):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, AVG, zgjxt, qzsh, hs from cb where Alias = '%s'" %cx
+        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, AVG, zgjxt, qzsh, hs, ll from cb where Alias = '%s'" %cx
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -94,6 +94,7 @@ def webCB(alias):
             msg = tmp[0][0]+u' : 停牌'
             return msg
 
+        prefix = tmp[0][3] #沪深代码
         zzcode = tmp[0][3]+tmp[0][1] #转债代码
         zz = float(getZZ(zzcode)) #查询转债价格
         zgj = float(tmp[0][8]) #转股价
@@ -121,16 +122,17 @@ def webCB(alias):
         zgjxt = tmp[0][20] #下调转股价条款
         qzsh = tmp[0][21] #强制赎回条款
         hs = tmp[0][22] #回售条款
+        lv = tmp[0][23] #利率
 
         if float(tmp[0][10]) == 0.0:
             #msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+u'无'+'|'+u'无'+'|'+str(dqr)+'|'+str(synx)
-            msg = tmp[0][0]+'|'+zzcode+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+u'无'+'|'+u'无'+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs
+            msg = tmp[0][0]+'|'+zzcode+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+u'无'+'|'+u'无'+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs+'|'+ll+'|'+prefix
             #print msg
             return msg
         else:
             #msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg
             #msg = tmp[0][0]+'|'+tmp[0][1]+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+str(tmp[0][9])+'|'+str(tmp[0][10])+'|'+str(dqr)+'|'+str(synx)
-            msg = tmp[0][0]+'|'+zzcode+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+str(tmp[0][9])+'|'+str(tmp[0][10])+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs
+            msg = tmp[0][0]+'|'+zzcode+'|'+str(position)+'|'+avg+'|'+str(zz)+'|'+str(yjl)+'|'+str(tmp[0][4])+'|'+str(tmp[0][5])+'|'+str(tmp[0][6])+'|'+tmp[0][7]+'|'+str(zgj)+'|'+zgqsr+'|'+str(zg)+'|'+str(zg_zdf)+'|'+str(qsj)+'|'+str(dqjz)+'|'+str(dqsyl)+'|'+str(dqnh)+'|'+str(tmp[0][9])+'|'+str(tmp[0][10])+'|'+str(dqr)+'|'+str(synx)+'|'+zgjxt+'|'+qzsh+'|'+hs+'|'+ll+'|'+prefix
             #print msg
             return msg
 
