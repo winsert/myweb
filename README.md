@@ -9,6 +9,10 @@ APP/
 
     views.py        #FLASK视图模块
 
+    adjust.py       #用于修改转债数据
+
+    jisilub.py      #用于从集思录下载转债数据
+
     cx_cpu.py       #用于查询cpu温度
 
     cx_cx.py        #用于查询可转债三线数据
