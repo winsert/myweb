@@ -26,6 +26,7 @@ from mhome import MHModi #按指定品名lab修改value值
 from mhome import MHAS #按指定品名lab修改value中的数量值+-
 #from mhome import MHBU #对使用TinyWebDB的mhome进行备份
 from web_cb import webCB #查询指定转债的基本数据
+from web_cback import getCBack #用于汇总转债名称等数据，为CBond服务
 
 @app.route('/')
 @app.route('/index')
@@ -131,6 +132,14 @@ def webCBCX():
         lab = request.args.get('lab')
         print lab
         value = webCB(lab)
+        print value
+        print
+        return value
+
+@app.route('/webCBack', methods = ['GET'])
+def webCBack():
+    if request.method == "GET":
+        value = getCBack()
         print value
         print
         return value
