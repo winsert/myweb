@@ -45,7 +45,7 @@ def getSQLite(code, newLP):
         print 'getSQLite ERROR :',e1
 
 # 从cb.db数据库中提取可转债数据进行实时三线分析
-def getCB():
+def get3line():
 
     msg = []
     zz_msg = ''
@@ -75,29 +75,30 @@ def getCB():
             zz = float(getZZ(zzcode)) #查询转债价格
 
             if zz <= jian and zz < LPrice and zz > jia and position < 600: #满足建仓条件
-                zz_msg = cc[0]+u': '+str(position)+u'张'+u'\n新低价:'+str(zz)+u'  建仓价:'+str(jian)
+                zz_msg = cc[0]+u':'+str(position)+u'张'+','+u'新低价:'+str(zz)+','+u'建仓价:'+str(jian)
                 msg.append(zz_msg)
                 getSQLite(code, zz)
             elif zz <= jia and zz < LPrice and zz > zhong and position < 900: #满足加仓条件
-                zz_msg = cc[0]+u': '+str(position)+u'张'+u'\n新低价:'+str(zz)+u'  加仓价:'+str(jia)
+                zz_msg = cc[0]+u':'+str(position)+u'张'+','+u'新低价:'+str(zz)+','+u'加仓价:'+str(jia)
                 msg.append(zz_msg)
                 getSQLite(code, zz)
             elif zz <= zhong and zz< LPrice and zz > 0: #满足重仓条件
-                zz_msg = cc[0]+u': '+str(position)+u'张'+u'\n新低价:'+str(zz)+u'  重仓价:'+str(zhong)
+                zz_msg = cc[0]+u':'+str(position)+u'张'+','+u'新低价:'+str(zz)+','+u'重仓价:'+str(zhong)
                 msg.append(zz_msg)
                 getSQLite(code, zz)
 
             #print zz_msg
 
     #print msg
-    return msg
+    if len(msg) > 0:
+        web = '|'.join(msg)
+        return web
+    else:
+        web = '0'
+        return web
 
 if __name__ == '__main__':
 
-    msglist = getCB()
-    if len(msglist) == 0:
-        print u"没有满足条件的CB,EB"
-    else:    
-        for msg in msglist:
-            print msg
-        print
+    msg = get3line()
+    print msg
+    print
