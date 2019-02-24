@@ -27,6 +27,8 @@ from mhome import MHAS #按指定品名lab修改value中的数量值+-
 #from mhome import MHBU #对使用TinyWebDB的mhome进行备份
 from web_cb import webCB #查询指定转债的基本数据
 from web_cback import getCBack #用于汇总转债名称等数据，为CBond服务
+from web_hp import getHP #检查高价折扣法的模块
+from web_3line import get3line #检查三线条件的模块
 
 @app.route('/')
 @app.route('/index')
@@ -140,6 +142,22 @@ def webCBCX():
 def webCBack():
     if request.method == "GET":
         value = getCBack()
+        print value
+        print
+        return value
+
+@app.route('/webHP', methods = ['GET'])
+def webHP():
+    if request.method == "GET":
+        value = getHP()
+        print value
+        print
+        return value
+
+@app.route('/web3line', methods = ['GET'])
+def web3line():
+    if request.method == "GET":
+        value = get3line()
         print value
         print
         return value
