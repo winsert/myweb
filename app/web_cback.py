@@ -18,7 +18,8 @@ def getCBack():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select Alias, name, Prefix, Code, zgcode, position, AVG, HPrice, LPrice, jian, jia, zhong, Note, zgqsr, zgj, hsqsr, hsj, dqr, shj, ll, zgjxt, qzsh, hs, ce from cb"
+        #sql = "select Alias, name, Prefix, Code, zgcode, position, AVG, HPrice, LPrice, jian, jia, zhong, Note, zgqsr, zgj, hsqsr, hsj, dqr, shj, ll, zgjxt, qzsh, hs, ce from cb"
+        sql = "select name, Prefix, Code, zgcode, position, AVG, HPrice, LPrice, jian, jia, zhong, Note, zgqsr, zgj, hsqsr, hsj, dqr, shj, ll, zgjxt, qzsh, hs from cb"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -30,9 +31,8 @@ def getCBack():
                 cb_list.append(i)
             cbs_list.append(cb_list)
 
-            name = cb[1] #前缀
-            prefix = cb[2] #前缀
-            ce = cb[23] #转债、交换债标识
+            name = cb[0] #名称
+            prefix = cb[1] #前缀
             
             if prefix == 'sh':
                 sh_list.append(name)
