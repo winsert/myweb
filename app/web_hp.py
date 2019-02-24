@@ -90,7 +90,7 @@ def getHP():
         msg = '|'.join(hpMsg)
         return msg
     else:
-        msg = u'没有满足高价折扣法的转债！'
+        msg = '0'
         return msg
 
 
