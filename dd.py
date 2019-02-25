@@ -7,7 +7,7 @@ __author__ = 'winsert@163.com'
 
 import sqlite3, urllib2
 from datetime import datetime
-from cx_ex import getEX
+#from cx_ex import getEX
 
 # 生成日期
 def getDATE():
