@@ -98,7 +98,7 @@ def getArrange():
                     hpmsg = name+u' 前高价:'+str(hp)+u' 已更新为 新高价:'+str(zz_hp)
                     hpmsg_list.append(hpmsg)
 
-                if zz_lp > lp: #比原最低价低
+                if zz_lp < lp: #比原最低价低
                     getSQLiteLP(code, zz_lp)
                     lpmsg = name+u' 前低价:'+str(lp)+u' 已更新为 新低价:'+str(zz_lp)
                     lpmsg_list.append(lpmsg)
