@@ -114,7 +114,7 @@ def getArrange():
     print
 
     if len(msg_list) == 0:
-        msg = '0'
+        msg = u'没有转债需要更新最高最低价！'
     else:
         msg = '|'.join(msg_list)
 
