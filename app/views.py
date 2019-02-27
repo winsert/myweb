@@ -29,6 +29,7 @@ from web_cb import webCB #查询指定转债的基本数据
 from web_cback import getCBack #用于汇总转债名称等数据，为CBond服务
 from web_hp import getHP #检查高价折扣法的模块
 from web_3line import get3line #检查三线条件的模块
+from web_arrange import getArrange #整理所有转债的最高最低价
 
 @app.route('/')
 @app.route('/index')
@@ -158,6 +159,14 @@ def webHP():
 def web3line():
     if request.method == "GET":
         value = get3line()
+        print value
+        print
+        return value
+
+@app.route('/webArrange', methods = ['GET'])
+def webArrange():
+    if request.method == "GET":
+        value = getArrange()
         print value
         print
         return value
