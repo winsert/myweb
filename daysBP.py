@@ -146,7 +146,8 @@ def getBP(cjje_lists, avg_lists, date_txt):
         y2.append(float(avg_lists[i][1]))
     
     plt.figure(figsize=(16, 8))
-    plt.title(date_txt)
+    #plt.title(date_txt)
+    plt.title(u'转债市场日成交总金额统计')
     plt.bar(x, y1)
     plt.plot(x, y2, linewidth=3, color='r')
     #plt.plot(x, y2, linewidth=5, color='r', marker='o', markerfacecolor='blue', markersize=5)
