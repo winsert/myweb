@@ -112,7 +112,8 @@ def getScat(xy, date):
     
     plt.scatter(X, Y, s=10, c='blue', alpha=1)
 
-    plt.title(date)
+    #plt.title(date)
+    plt.title(u'溢价率的散点图')
     plt.xlim(-20, 250)
     plt.xlabel('premium rate')
     #plt.xticks(())  # ignore xticks
