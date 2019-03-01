@@ -2,16 +2,25 @@
 
 run.py      #主程序
 
-cb.db       #数据库
+adjust.py   #用于修改转债信息
+
+dayScat.py  #用于画转债溢价率的散点图
+daysBP.py   #用于画转债成交量的直方图
+
+dd.py       #用于记录转债日成交信息
+
+exchange.py #用于记录转债的交易数据
+
+jisilu.py   #用于从集思录下载转债信息
+
+cb.db       #记录转债信息的数据库
+dd.db       #记录转债日成交信息的数据库
+mhome.db    #为“管家婆”提供网络数据库服务
 
 APP/
     __init__.py     #初始化文件
 
     views.py        #FLASK视图模块
-
-    adjust.py       #用于修改转债数据
-
-    jisilub.py      #用于从集思录下载转债数据
 
     cx_cpu.py       #用于查询cpu温度
 
@@ -42,13 +51,24 @@ APP/
     mcx_ex.py       #用于mobile.html页面显示交换债三线数据
 
     mhome.py        #用于支持APP“管家婆”
-    mhome.db        #APP"管家婆"的数据库
 
     qcx_cx.py       #用于查询全部可转债数据
 
     qcx_ex.py       #用于查询全部交换债数据
 
-    web_cb          #用于支持APP(CBond)查询可转债信息
+    web_3line.py    #支持APP(CBond),用于查询满足三线条件的转债
+
+    web_arrange.py  #支持APP(CBond),用于更新转债每日最高最低价
+
+    web_cback.py    #支持APP(CBond),用于向公网数据库提供数据同步服务
+
+    web_cb          #支持APP(CBond),用于查询可转债信息
+
+    web_hp.py       #支持APP(CBond),用于查询满足高价折扣的转债
+
+    wxcx.py         #用于查询转债信息
+
+    wxex.py         #用于查询交债信息
 
     zb.py           #用于转债值占比分析
 
