@@ -49,8 +49,6 @@ def getCode():
                 code_list.append(code[0])
         
         #print code_list
-        code_list.remove('123004')
-        #print code_list
         return code_list
                
     except Exception, e:
