@@ -111,7 +111,7 @@ def getRECORD(today, code, zg_s, zg_e, zg_h, zg_l, zz_s, zz_e, zz_h, zz_l, zz_z,
     zz_s = zz_s #转债开盘价
     zz_e = zz_e #转债收盘价
     zz_h = zz_h #转债最高价
-    zz_l = zz_l #转债zuid价
+    zz_l = zz_l #转债最低价
     zz_z = zz_z #转债成交张数
     zz_j = zz_j #转债成交金额
     yjl = yjl   #溢价率
