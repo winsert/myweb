@@ -21,12 +21,12 @@ from cx_nhg import getNHG #查询逆回购数据
 from cx_weather import getWeather #查询天气实况
 from cx_pm import getPM #查询空气质量
 from zb import getZB #查询转债市值占比
-from mhome import MHSearch #从mhome.db中查询指定i品名lab的value值
-from mhome import MHModi #按指定品名lab修改value值
-from mhome import MHAS #按指定品名lab修改value中的数量值+-
+#from mhome import MHSearch #从mhome.db中查询指定i品名lab的value值
+#from mhome import MHModi #按指定品名lab修改value值
+#from mhome import MHAS #按指定品名lab修改value中的数量值+-
 #from mhome import MHBU #对使用TinyWebDB的mhome进行备份
 from web_cb import webCB #查询指定转债的基本数据
-from web_cback import getCBack #用于汇总转债名称等数据，为CBond服务
+from web_cback import getCBack #用于汇总转债名称等数据，上传至cbond网络数据库，为CBond4.0服务
 from web_hp import getHP #检查高价折扣法的模块
 from web_3line import get3line #检查三线条件的模块
 from web_arrange import getArrange #整理所有转债的最高最低价
