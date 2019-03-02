@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-# 本程序用于查询每日收盘价超过到期价值的转债占比
+# 本程序用于查询每日收盘价超过到期价值的转债占比,并画出折线图
 
 __author__ = 'winsert@163.com'
 
 import sqlite3, urllib2, datetime
-#import numpy as np
 import matplotlib.pyplot as plt
 
 # 生成今天日期
@@ -159,7 +158,7 @@ def getRate(date_list, cb_lists):
                 zb_list.append(dl)
                 zb_list.append(zb)
                 zb_lists.append(zb_list)
-                print u'今日市场共有'+str(cSum)+u'只转债，其中有'+str(vSum)+u'只转债的收盘价>到期价值。'
+                print dl+u'：共有 '+str(cSum)+u' 只转债，其中 '+str(vSum)+u' 只转债的收盘价 > 到期价值，占比：'+str(zb)+'%'
 
         #print zb_lists
         return zb_lists
@@ -184,7 +183,7 @@ def getLine(zb_lists):
     plt.plot(x, y, linewidth=3, color='b')
     #plt.plot(x, y2, linewidth=5, color='r', marker='o', markerfacecolor='blue', markersize=5)
     
-    plt.xlim(0, 70)
+    plt.xlim(0, 80)
     plt.xlabel('DATE')
     plt.xticks(())  # ignore xticks
     plt.ylabel('RATE')
@@ -195,11 +194,8 @@ def getLine(zb_lists):
 
 
 if __name__ == '__main__':
-    #getRate()
-
-    #avg_days = 10 #计算avg_days天的平均数据
-    ndays = 100 #查询Ｎ天前的数据
-    #days = avg_days + N #查询倒数N+avg_days天的数据
+    
+    ndays = 120 #查询Ｎ天前的数据
 
     today = getToday() #生成今天日期
     print u"\n今天是：" + today + "\n"
@@ -213,6 +209,6 @@ if __name__ == '__main__':
     #print cb_list
 
     zb_lists = getRate(date_list, cb_lists) #计算收盘价>到期价值的转债占所有转债的比例
-    print zb_lists
+    #print zb_lists
 
     getLine(zb_lists) #画折线图
