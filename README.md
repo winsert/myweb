@@ -67,6 +67,8 @@ APP/
 
     web_hp.py       #支持APP(CBond),用于查询满足高价折扣的转债
 
+	web_weather.py	#用于APP查询济南市多地实时天气信息
+
     wxcx.py         #用于查询转债信息
 
     wxex.py         #用于查询交债信息
