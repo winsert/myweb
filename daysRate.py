@@ -187,7 +187,7 @@ def getLine(zb_lists):
     plt.xlabel('DATE')
     plt.xticks(())  # ignore xticks
     plt.ylabel('RATE')
-    plt.ylim(0, 70)
+    plt.ylim(0, 90)
     #plt.yticks(())  # ignore yticks
 
     plt.show()
