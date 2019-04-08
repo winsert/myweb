@@ -183,7 +183,7 @@ def getLine(zb_lists):
     plt.plot(x, y, linewidth=3, color='b')
     #plt.plot(x, y2, linewidth=5, color='r', marker='o', markerfacecolor='blue', markersize=5)
     
-    plt.xlim(0, 80)
+    plt.xlim(0, 120)
     plt.xlabel('DATE')
     plt.xticks(())  # ignore xticks
     plt.ylabel('RATE')
@@ -195,7 +195,7 @@ def getLine(zb_lists):
 
 if __name__ == '__main__':
     
-    ndays = 120 #查询Ｎ天前的数据
+    ndays = 180 #查询Ｎ天前的数据
 
     today = getToday() #生成今天日期
     print u"\n今天是：" + today + "\n"
