@@ -100,6 +100,7 @@ def getCB():
         conn.close()
 
         for cb in tmp:
+            #name = cb[0] #转债名称
             code = cb[1] #转债代码
             prefix = cb[3]
             dqr = cb[5] #到期日
@@ -109,6 +110,7 @@ def getCB():
 
             if prefix != 'QS' and ce != 'e':
             #if cb[1] == '123015':
+                #print name
                 synx = getSYNX(dqr) #计算剩余年限
                 dqjz = getDQJZ(synx, shj, ll) #计算到期价值
                 #print dqjz
@@ -130,8 +132,7 @@ def getRate(date_list, cb_lists):
             zb_list = []
             cSum = 0 #记录转债的总数
             vSum = 0 #记录收盘价>到期价值的转债数量
-            #vSum = 0 #记录收盘价>到期价值的转债数量
-            for cb in cb_lists:   
+            for cb in cb_lists:
                 cl = 'c' + cb[0] #生成表名
                 dqjz = float(cb[1]) #到期价值
 
@@ -206,7 +207,7 @@ if __name__ == '__main__':
 
     cb_lists = getCB() #查询转债的代码和到期价值
     #cb_list = [['127009', 115.3], [u'113527', 120.7]]
-    #print cb_list
+    #print cb_lists
 
     zb_lists = getRate(date_list, cb_lists) #计算收盘价>到期价值的转债占所有转债的比例
     #print zb_lists
