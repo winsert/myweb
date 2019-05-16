@@ -1,8 +1,10 @@
 # myweb
 
-run.py      #主程序
+run.py      #web页面的主程序
 
 adjust.py   #用于修改转债信息
+
+an.py       #用微信发送三线、高价折扣通知
 
 dayScat.py  #用于画转债溢价率的散点图
 daysBP.py   #用于画转债成交量的直方图
@@ -16,7 +18,8 @@ jisilu.py   #用于从集思录下载转债信息
 
 cb.db       #记录转债信息的数据库
 dd.db       #记录转债日成交信息的数据库
-mhome.db    #为“管家婆”提供网络数据库服务
+
+SendMail.py #用邮件发送三线、高价折扣通知
 
 APP/
     __init__.py     #初始化文件
@@ -51,8 +54,6 @@ APP/
 
     mcx_ex.py       #用于mobile.html页面显示交换债三线数据
 
-    mhome.py        #用于支持APP“管家婆”
-
     qcx_cx.py       #用于查询全部可转债数据
 
     qcx_ex.py       #用于查询全部交换债数据
@@ -76,6 +77,21 @@ APP/
     zb.py           #用于转债值占比分析
 
 static/             #用于保存静态文件
+
+common              #用于保存通用功能模块
+
+    sendmail.py     #邮件发送模块
+
+cond/               #用于保存转债相关的模块
+
+    cxcb.py         #三线查询模块
+
+    cxhp.py         #高价折扣查询模块
+
+    cxindex.py      #指数查询模块
+
+    cxqs.py         #强赎查询模块
+
 
 templates/
     index.html
