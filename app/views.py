@@ -76,54 +76,6 @@ def weather():
     pm_msg = getPM()
     return render_template("weather.html", weather_list = weather_msg, pm_list = pm_msg)
 
-@app.route('/mhSearch', methods = ['GET'])
-def mhSerach():
-    if request.method == "GET":
-        print 'Search value : ',
-        lab = request.args.get('lab')
-        #print lab
-        value = MHSearch(lab)
-        print value
-        print
-        return value
-
-@app.route('/mhModi', methods = ['GET'])
-def mhModi():
-    if request.method == "GET":
-        print "Modi value : "
-        lab = request.args.get('lab')
-        print 'lab = ', lab
-        value = MHModi(lab)
-        print value
-        print
-        return value
-
-@app.route('/mhAS', methods = ['GET'])
-def mhAS():
-    if request.method == "GET":
-        print "Add/Subtract : "
-        lab = request.args.get('lab')
-        print 'lab = ', lab
-        value = MHAS(lab)
-        print value
-        print
-        return value
-
-@app.route('/mhBackUp', methods = ['GET'])
-def mhBackUp():
-    if request.method == "GET":
-        print "BackUp to mhome0.db "
-        lab = request.args.get('lab')
-        print 'lab = ', lab
-        tmp = open('mhome.txt', mode='w')
-        tmp.write(lab)
-        tmp.close
-
-        #value = MHABU(lab)
-        #print value
-        #print
-        return lab
-
 @app.route('/webCBCX', methods = ['GET'])
 def webCBCX():
     if request.method == "GET":
