@@ -80,6 +80,8 @@ static/             #用于保存静态文件
 
 common              #用于保存通用功能模块
 
+    price.py        #用于从http://hq.sinajs.cn/list=获取最新成交价格
+
     sendmail.py     #邮件发送模块
 
 cond/               #用于保存转债相关的模块
