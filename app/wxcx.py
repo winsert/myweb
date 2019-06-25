@@ -87,7 +87,7 @@ def getWXCX():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr from cb ORDER BY Code"
+        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr from cb0 ORDER BY Code"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
