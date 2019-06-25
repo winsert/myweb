@@ -139,7 +139,7 @@ def getCX(today):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, zgj, dqr, shj, ll, ce from cb"
+        sql = "select name, Code, zgcode, Prefix, zgj, dqr, shj, ll, ce from cb0"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
