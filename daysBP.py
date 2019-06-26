@@ -59,7 +59,7 @@ def getCode():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select Code, Prefix, ce from cb"
+        sql = "select Code, Prefix, ce from cb0"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -152,11 +152,11 @@ def getBP(cjje_lists, avg_lists, date_txt):
     plt.plot(x, y2, linewidth=3, color='r')
     #plt.plot(x, y2, linewidth=5, color='r', marker='o', markerfacecolor='blue', markersize=5)
     
-    plt.xlim(0, 32)
+    plt.xlim(0, 42)
     plt.xlabel('DATE')
     plt.xticks(())  # ignore xticks
     plt.ylabel('AMO')
-    plt.ylim(0, 150)
+    plt.ylim(0, 130)
     #plt.yticks(())  # ignore yticks
 
     # 设置数字标签
@@ -168,13 +168,13 @@ def getBP(cjje_lists, avg_lists, date_txt):
 
 if __name__ == '__main__':
     
-    avg_days = 10 #计算avg_days天的平均数据
-    N = 30 #查询Ｎ天前的数据
+    avg_days = 20 #计算avg_days天的平均数据
+    N = 40 #查询Ｎ天前的数据
     days = avg_days + N #查询倒数N+avg_days天的数据
 
     today = getToday() #生成今天日期
     print u"\n今天是：" + today + "\n"
-    print u"即将开始查询自 " + today + u" 起倒数 " + str(days) + u" 天的数据......\n"
+    print u"即将开始查询自 " + today + u" 起倒数 " + str(days) + u" 天的成交数据，并计算 " + str(avg_days) + u" 天的平均成交金额：\n"
     
     start_date = getDate(N)
 
