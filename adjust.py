@@ -19,7 +19,7 @@ def CX(alias):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, jian, jia, zhong, note, position, zgj, ll, code, AVG, LPrice from cb where Alias = '%s'" %cx
+        sql = "select name, jian, jia, zhong, note, position, zgj, ll, code, AVG, LPrice from cb0 where Alias = '%s'" %cx
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -72,7 +72,7 @@ def Name(alias, name):
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
         conn.text_factory = str #解决字符问题
-        sql = "UPDATE cb SET Name = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET Name = ? WHERE Alias = ?"
         curs.execute(sql, (name, alias))
         conn.commit()
         curs.close()
@@ -92,7 +92,7 @@ def Jian(alias, jian):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET jian = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET jian = ? WHERE Alias = ?"
         curs.execute(sql, (jian, alias))
         conn.commit()
         curs.close()
@@ -112,7 +112,7 @@ def Jia(alias, jia):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET jia = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET jia = ? WHERE Alias = ?"
         curs.execute(sql, (jia, alias))
         conn.commit()
         curs.close()
@@ -132,7 +132,7 @@ def Zhong(alias, zhong):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET zhong = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET zhong = ? WHERE Alias = ?"
         curs.execute(sql, (zhong, alias))
         conn.commit()
         curs.close()
@@ -152,7 +152,7 @@ def Note(alias, note):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET note = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET note = ? WHERE Alias = ?"
         curs.execute(sql, (note, alias))
         conn.commit()
         curs.close()
@@ -172,7 +172,7 @@ def Position(alias, position):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET position = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET position = ? WHERE Alias = ?"
         curs.execute(sql, (position, alias))
         conn.commit()
         curs.close()
@@ -192,7 +192,7 @@ def AVG(alias, avg):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET AVG = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET AVG = ? WHERE Alias = ?"
         curs.execute(sql, (avg, alias))
         conn.commit()
         curs.close()
@@ -212,7 +212,7 @@ def ZGJ(alias, zgj):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET zgj = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET zgj = ? WHERE Alias = ?"
         curs.execute(sql, (zgj, alias))
         conn.commit()
         curs.close()
@@ -232,7 +232,7 @@ def LL(alias, ll):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET ll = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET ll = ? WHERE Alias = ?"
         curs.execute(sql, (ll, alias))
         conn.commit()
         curs.close()
@@ -252,7 +252,7 @@ def Lprice(alias, lprice):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "UPDATE cb SET LPrice = ? WHERE Alias = ?"
+        sql = "UPDATE cb0 SET LPrice = ? WHERE Alias = ?"
         curs.execute(sql, (lprice, alias))
         conn.commit()
         curs.close()
