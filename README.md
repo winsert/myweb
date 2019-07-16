@@ -2,7 +2,8 @@
 
 run.py      #web页面的主程序
 
-adjust.py   #用于修改转债信息
+adjust.py   #用于修改转债信息:表cb0
+adjust1.py  #用于修改转债信息:表cb
 
 an.py       #用微信发送三线、高价折扣通知
 
