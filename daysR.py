@@ -28,33 +28,6 @@ def getToday():
     #print today
     return today
 
-# 生成查询日期
-def getDate(ndays):
-    tmp_list = []
-
-    for d in range(-1*ndays, 1):
-        #print d
-        now_time = datetime.datetime.now()
-        cx_time = now_time + datetime.timedelta(days=d)
-        year = str(cx_time.year)
-        month = cx_time.month
-        if month < 10:
-            month = '0' + str(month)
-        else:
-            month = str(month)
-
-        day = cx_time.day
-        if day < 10:
-            day = '0' + str(day)
-        else:
-            day = str(day)
-
-        cx_date = year+month+day
-        #print cx_date
-        tmp_list.append(cx_date)
-    #print tmp_list
-    return tmp_list
-
 def getRate(ndays):
 
     zb_lists = []
@@ -80,7 +53,7 @@ def getRate(ndays):
             zb_list.append(rate)
             zb_lists.append(zb_list)
 
-        print zb_lists
+        #print zb_lists
         return zb_lists
 
     except Exception, e:
