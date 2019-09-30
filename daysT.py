@@ -220,7 +220,7 @@ if __name__ == '__main__':
 
         if yn == 'y':
             print u"\n正在增加 " + cjje[0] + u" 的数据......"
-            #SQL(cjje_list)    
+            SQL(cjje_list)    
             print u"\n操作已完成。"
         elif yn == 'n':
             print u"\n没有增加新数据。"
