@@ -55,6 +55,7 @@ def getZG(zgCode):
 # 用于查询转债的数据
 def getZZ(zzCode):
     key = zzCode
+    print key
     url = "http://hq.sinajs.cn/list="+key #生成用于查询的URL
     try:
         resp = bsObjForm(url)
