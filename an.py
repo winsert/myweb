@@ -64,7 +64,7 @@ if __name__ == '__main__':
             print 
             itchat.send(restStartMsg, toUserName = userName)
 
-            index = {u'上证50':'sh000016', u'沪深300':'sz399300', u'中证500':'sh000905', u'创业板':'sz399006', u'B股':'sh000003', u'证券公司':'sz399975'} #要查询的指数代码
+            index = {u'50ETF':'sh510050', u'300ETF':'sh510300', u'500ETF':'sh510500', u'创业板':'sz159915', u'B股':'sh000003', u'证券ETF':'sh512880', u'科技ETF':'sh515000', u'红利ETF':'sh510880'} #要查询的指数代码
     
             for k in index.keys():
                 value = index.get(k)
