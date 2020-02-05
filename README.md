@@ -78,6 +78,8 @@ APP/
 
     wxex.py         #用于查询交债信息
 
+	wxdqjz.py		#用于查询“最新价<到期价值”的转债
+
     zb.py           #用于转债值占比分析
 
 static/             #用于保存静态文件
@@ -111,5 +113,7 @@ templates/
     tk.html         #显示全部可转债、交换债条款查询结果的页面
 
     weather.html    #显示天气实况信息
+
+	dqjz.html		#显示“最新价<到期价值”的转债
 
     zb.html         #显示转债市值占比分析的页面
