@@ -140,7 +140,7 @@ if __name__ == '__main__':
                 #print jjMsg
                 #itchat.send(jjMsg, toUserName = userName)
 
-        time.sleep(60)  # 延时查询的秒数,300即延时5分钟查询一次。
+        time.sleep(120)  # 延时查询的秒数,300即延时5分钟查询一次。
 
     # 查询指数收盘的涨跌情况
     index = {u'50ETF':'sh510050', u'300ETF':'sh510300', u'500ETF':'sh510500', u'创业板':'sz159915', u'B股':'sh000003', u'证券ETF':'sh512880', u'科技ETF':'sh515000', u'红利ETF':'sh510880'} #要查询的指数代码
