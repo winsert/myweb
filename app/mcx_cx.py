@@ -87,7 +87,7 @@ def getMCX():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr from cb ORDER BY Code"
+        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, zgdm from cb ORDER BY Code"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -120,7 +120,7 @@ def getMCX():
                 jia = cc[5] #加仓价
                 cList.append(jia)
                 zhong = cc[6] #重仓价
-                cList.append(zhong)
+                #cList.append(zhong)
                 note = cc[7] #说明
                 #cList.append(note)
 
@@ -129,7 +129,7 @@ def getMCX():
                 #cList.insert(7, zgj)
                 zgqsr = cc[18] #转股起始日
                 #cList.append(zgqsr)
-
+                
                 if zg_price != 0:
                     zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
                     #cList.append(zgjz)
@@ -144,7 +144,9 @@ def getMCX():
                     #cList[5] = u"停牌"
 
                 position = cc[12] #已购买的张数
-                cList.append(position)
+                #cList.append(position)
+                zgdm = cc[19] #评级
+                cList.append(zgdm) #增加评级
 
                 dqr = cc[11] #到期日
                 #cList.append(dqr)
@@ -165,7 +167,7 @@ def getMCX():
                 #qss = cc[17] #剩余天数
                 #cList.append(qs)
 
-                if cList[2] <= cList[3] or (cList[2] >= 130.00 and cList[7] != 0): #转债现价<=建仓价
+                if cList[2] <= cList[3] or (cList[2] >= 130.00 and position != 0): #转债现价<=建仓价
                     ccList.append(cList)
 
         ccList.sort()

@@ -86,7 +86,7 @@ def getMEX():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr from cb ORDER BY Code"
+        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, zgdm from cb ORDER BY Code"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -118,7 +118,7 @@ def getMEX():
                 jia = cc[5] #加仓价
                 cList.append(jia)
                 zhong = cc[6] #重仓价
-                cList.append(zhong)
+                #cList.append(zhong)
                 note = cc[7] #说明
                 #cList.append(note)
 
@@ -142,7 +142,9 @@ def getMEX():
                     #cList[5] = u"停牌"
 
                 position = cc[12] #已购买的张数
-                cList.append(position)
+                #cList.append(position)
+                zgdm = cc[19] #评级
+                cList.append(zgdm) #增加评级
 
                 dqr = cc[11] #到期日
                 #cList.append(dqr)
