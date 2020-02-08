@@ -36,7 +36,7 @@ def getCode():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select Code, Prefix, ce from cb"
+        sql = "select Code, Prefix, ce from cb0"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -100,6 +100,8 @@ def getCbData(date, codes):
 
 #画散点图
 def getScat(xy, date):
+    #print xy
+    n = len(xy) #转债的数量
     x = [] #溢价率
     y = [] #到期年化收益率
     for i in xy:
@@ -107,19 +109,15 @@ def getScat(xy, date):
         x.append(float(i[0]))
         y.append(float(i[1]))
     
-    X = np.array(x)
-    Y = np.array(y)
-    
-    plt.scatter(X, Y, s=10, c='blue', alpha=1)
+    plt.figure(figsize=(15,10)) #调整尺寸以适合屏幕
+    #plt.scatter(x, y, s=20, edgecolor='none', c='blue', alpha=1)
+    plt.scatter(x, y, s=35, edgecolor='none', c=y, cmap=plt.cm.Blues, alpha=1)
 
-    #plt.title(date)
-    plt.title(u'溢价率的散点图')
-    plt.xlim(-20, 250)
-    plt.xlabel('premium rate')
-    #plt.xticks(())  # ignore xticks
-    plt.ylim(-10, 15)
+    plt.title(str(n)+u' 只可转债的溢价率散点图')
+    plt.xlim(-20, 180)
+    plt.xlabel(u'premium rate')
+    plt.ylim(-10, 10)
     plt.ylabel('annualized rate of return')
-    #plt.yticks(())  # ignore yticks
 
     ax = plt.gca()
     ax.spines['right'].set_color('none')
@@ -130,7 +128,7 @@ def getScat(xy, date):
 
     ax.yaxis.set_ticks_position('left')
     ax.spines['left'].set_position(('data', 0))
-
+    
     plt.show()
 
 
@@ -139,7 +137,7 @@ if __name__ == '__main__':
     today = getToday() #生成日期
     print u"\n今天是：" + today + "\n"
     
-    date = raw_input("请输入查询日期，例：20180707 > ")
+    date = raw_input("请输入查询日期，例："+today+" > ")
     if date == '':
         date = today
         print u"查询日期：" + date + '\n'
@@ -156,5 +154,6 @@ if __name__ == '__main__':
         print u"\n即将开始查询 " + str(date) + u" 的数据......\n"
         xy_list = getCbData(date, codes) #查询转债的数据
         getScat(xy_list, date) #画散点图
+        print u"\n查询结束！\n"
     else:
         print u'\n' + str(date) + u" 的数据不存在！\n"
