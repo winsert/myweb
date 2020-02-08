@@ -65,26 +65,17 @@ def getLine(zb_lists):
     x = [] #日期
     y = [] #占比
     
-    for i in range(n):
-        x.append(i+1)
-
+    x = list(range(0,n))
+    
     for i in range(n):
         y.append(float(zb_lists[i][1]))
     
-    #plt.figure(figsize=(0, 2))
-    plt.title(u"牛熊转换指标")
+    plt.title(str(n)+u" 天牛熊转换指标")
     plt.plot(x, y, linewidth=3, color='b')
-    #plt.plot(x, y2, linewidth=5, color='r', marker='o', markerfacecolor='blue', markersize=5)
-    
-    plt.xlim(0, 120)
-    plt.xlabel('DATE')
-    plt.xticks(())  # ignore xticks
+    plt.xlabel('Days')
     plt.ylabel('RATE')
-    plt.ylim(0, 90)
-    #plt.yticks(())  # ignore yticks
-
+    plt.axis([0,120,0,100]) #设置x,y轴的取值范围
     plt.show()
-
 
 if __name__ == '__main__':
     
@@ -96,5 +87,6 @@ if __name__ == '__main__':
 
     zb_lists = getRate(ndays) #计算收盘价>到期价值的转债占所有转债的比例
     #print zb_lists
+    print u"\n显示 "+str(len(zb_lists))+u" 天牛熊转换指标。\n"
 
     getLine(zb_lists) #画折线图
