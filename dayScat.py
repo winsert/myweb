@@ -6,7 +6,6 @@
 __author__ = 'winsert@163.com'
 
 import sqlite3, random
-import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime
 
