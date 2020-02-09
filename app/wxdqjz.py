@@ -87,7 +87,7 @@ def WXDQJZ():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr from cb0 ORDER BY Code"
+        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, zgdm from cb0 ORDER BY Code"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -158,6 +158,9 @@ def WXDQJZ():
                 #cList.append(dqsyl)
                 dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
                 cList.insert(0, dqnh)
+
+                zgdm = cc[19] #评级
+                cList.append(zgdm) #增加评级
         
                 qs = cc[16] #已强赎天数
                 #cList.append(qs)
@@ -166,7 +169,7 @@ def WXDQJZ():
 
                 if cList[2] <= dqjz and jian > 70 and zhong > 0 : #转债现价<=到期价值 and 建仓价>70 and 重仓价>0
                     ccList.append(cList)
-                    print ccList
+                    #print ccList
 
         ccList.sort()
         #print ccList
