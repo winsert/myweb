@@ -66,7 +66,8 @@ APP/
 
     web_arrange.py  #支持APP(CBond),用于更新转债每日最高最低价
 
-    web_cback.py    #支持APP(CBond),用于向公网数据库提供数据同步服务
+    web_cback.py    #支持APP(CBond5.x),用于向公网数据库提供数据同步服务
+    web_cback6.py   #支持APP(CBond6.x),用于向公网数据库提供数据同步服务
 
     web_cb          #支持APP(CBond),用于查询可转债信息
 

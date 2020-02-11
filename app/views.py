@@ -23,7 +23,8 @@ from cx_weather import getWeather #查询天气实况
 from cx_pm import getPM #查询空气质量
 from zb import getZB #查询转债市值占比
 from web_cb import webCB #查询指定转债的基本数据
-from web_cback import getCBack #用于汇总转债名称等数据，上传至cbond网络数据库，为CBond4.0服务
+from web_cback import getCBack #用于汇总转债名称等数据，上传至cbond网络数据库，为CBond5.0服务
+from web_cback6 import getCBack6 #用于汇总转债名称等数据，上传至cbond网络数据库，为CBond6.x服务
 from web_hp import getHP #检查高价折扣法的模块
 from web_3line import get3line #检查三线条件的模块
 from web_arrange import getArrange #整理所有转债的最高最低价
@@ -97,6 +98,14 @@ def webCBCX():
 def webCBack():
     if request.method == "GET":
         value = getCBack()
+        print value
+        print
+        return value
+
+@app.route('/webCBack6', methods = ['GET'])
+def webCBack6():
+    if request.method == "GET":
+        value = getCBack6()
         print value
         print
         return value
