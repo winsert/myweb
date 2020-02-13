@@ -75,7 +75,7 @@ def getQS():
                         msg = name+u'\n已强赎'+str(nqs)+u'天,剩余天数:'+str(nqss)+u'天。'
                         msglist.append(msg)
                     elif qsl > 1.3 and qs >= 15 and qss >= 0:
-                        conn.execute("UPDATE cb SET prefix = 'QS' where Code = %s" % code)
+                        #conn.execute("UPDATE cb SET prefix = 'QS' where Code = %s" % code)
                         msg = name+u' 已完成强赎!!!'
                         msglist.append(msg)
                     elif qsl < 1.3 and qs >= 1 and qss >= 1:
