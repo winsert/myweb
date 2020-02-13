@@ -22,6 +22,7 @@ def getZZ(zzCode):
         resp = bsObjForm(url)
         tmp_list = resp.split(',')
         zz_price = float(tmp_list[3]) #获取正股实时价格
+        #print zzCode+u' 当前价：'+str(zz_price)+'\n'
         return zz_price
     except:
         zz_price = 0 
@@ -59,6 +60,7 @@ def getHP():
         conn.close()
 
         for cc in tmp:
+            name = cc[0] #转债名称
             code = cc[1] #转债代码
             zzcode = cc[2]+cc[1] #前缀+转债代码
             position = float(cc[3]) #仓位
@@ -66,6 +68,7 @@ def getHP():
 
             if position > 0:
                 zz = float(getZZ(zzcode)) #查询转债价格
+                #print name+u' 原最高价：'+str(hp)+u'  当前价：'+str(zz)+'\n'
 
                 if zz > hp + 1.0: #比原最高价高1.0元
                     getSQLite(code, zz)
@@ -88,15 +91,13 @@ def getHP():
     #print hpMsg
     return hpMsg
 
-'''
 if __name__ == '__main__':
     
     HPlist = getHP()
     if len(HPlist) == 0:
-        print HPriceMsg
+        print u'一切正常！'
         print
     else:
         for hpMsg in HPlist:
-            #print hpMsg
+            print hpMsg
             print
-'''
