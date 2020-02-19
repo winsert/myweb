@@ -64,14 +64,18 @@ def getLine(zb_lists):
     n = len(zb_lists) #用于设定X,Y轴
     x = [] #日期
     y = [] #占比
+    z = [] #60线
     
     x = list(range(0,n))
     
     for i in range(n):
         y.append(float(zb_lists[i][1]))
-    
+        z.append(60)
+    #print z
+
     plt.title(str(n)+u" 天牛熊转换指标")
     plt.plot(x, y, linewidth=3, color='b')
+    plt.scatter(x, z, s=3, edgecolor='none' ,color='r')
     plt.xlabel('Days')
     plt.ylabel('RATE')
     plt.axis([0,120,0,100]) #设置x,y轴的取值范围
