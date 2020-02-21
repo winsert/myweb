@@ -64,7 +64,7 @@ if __name__ == '__main__':
             print 
             itchat.send(restStartMsg, toUserName = userName)
 
-            index = {u'50ETF':'sh510050', u'300ETF':'sh510300', u'500ETF':'sh510500', u'创业板':'sz159915', u'B股':'sh000003', u'证券ETF':'sh512880', u'科技ETF':'sh515000', u'红利ETF':'sh510880'} #要查询的指数代码
+            index = {u'50ETF':'sh510050', u'300ETF':'sh510300', u'500ETF':'sh510500', u'创业板':'sz159915', u'证券ETF':'sh512880', u'科技ETF':'sh515000', u'红利ETF':'sh510880'} #要查询的指数代码
     
             for k in index.keys():
                 value = index.get(k)
@@ -83,6 +83,17 @@ if __name__ == '__main__':
 
         #print datetime.now()
         print time.asctime(time.localtime(time.time())) #显示查询时间
+
+        #指数分析：
+        index = {u'50ETF':'sh510050', u'300ETF':'sh510300', u'500ETF':'sh510500', u'创业板':'sz159915', u'证券ETF':'sh512880', u'科技ETF':'sh515000', u'红利ETF':'sh510880'} #要查询的指数代码
+    
+            for k in index.keys():
+                value = index.get(k)
+                index_zz = getIndex(value)
+                if index_zz < 1
+                    index_msg = k+' : '+str(index_zz)
+                    print index_msg
+                    itchat.send(index_msg, toUserName = userName)
 
         # 三线分析：
         msglist = getCB() #查询是否有CB满足三线买入条件
