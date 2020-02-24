@@ -95,7 +95,7 @@ if __name__ == '__main__':
 
         #print datetime.now()
         print time.asctime(time.localtime(time.time())) #显示查询时间
-
+        '''
         #指数分析：
         index = {
                 u'50ETF':'sh510050',
@@ -118,7 +118,7 @@ if __name__ == '__main__':
                 index_msg = k+' : '+str(index_zz)
                 print index_msg
                 itchat.send(index_msg, toUserName = userName)
-
+        '''
         # 三线分析：
         msglist = getCB() #查询是否有CB满足三线买入条件
         if len(msglist) == 0: #没有满足条件的CB
