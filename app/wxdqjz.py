@@ -171,8 +171,8 @@ def WXDQJZ():
                 #qss = cc[17] #剩余天数
                 #cList.append(qs)
 
-                if cList[2] <= dqjz and jian > 70 and zhong > 0 : #转债现价<=到期价值 and 建仓价>70 and 重仓价>0
-                #if cList[2] <= dqjz and jian > 70 : #转债现价<=到期价值 and 建仓价>70
+                #if cList[2] <= dqjz and jian > 70 and zhong > 0 : #转债现价<=到期价值 and 建仓价>70 and 重仓价>0
+                if cList[2] <= dqjz and jian > 70 : #转债现价<=到期价值 and 建仓价>70
                     ccList.append(cList)
                     #print ccList
 
