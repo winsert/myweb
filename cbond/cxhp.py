@@ -73,17 +73,20 @@ def getHP():
                 #if zz > hp + 1.0: #比原最高价高1.0元
                 if zz > hp * 1.01: #比原最高价高1%
                     getSQLite(code, zz)
-                    hpmsg = cc[0]+u': '+str(position)+u'张'+u'\n最新价:'+str(zz)+u' >前高价:'+str(hp)
+                    #hpmsg = cc[0]+u': '+str(position)+u'张'+u'\n最新价:'+str(zz)+u' >前高价:'+str(hp)
+                    hpmsg = cc[0]+u': '+str(zz)+u' >前高价:'+str(hp)
                     hpMsg.append(hpmsg)
 
                 elif hp > 130.0 and zz < 130.0:
                     getSQLite(code, 130.00)
-                    hpmsg = cc[0]+u': '+str(position)+u'张'+u'\n最新价:'+str(zz)+u',< 130元。'
+                    #hpmsg = cc[0]+u': '+str(position)+u'张'+u'\n最新价:'+str(zz)+u',< 130元。'
+                    hpmsg = cc[0]+u': '+str(zz)+u' < 130元！'
                     hpMsg.append(hpmsg)
 
-                elif hp >= 130.0 and zz <= (hp-8) and zz > 130.0:
+                elif hp >= 130.0 and zz <= (hp-9) and zz > 130.0:
                     getSQLite(code, zz)
-                    hpmsg = cc[0]+u': '+str(position)+u'张'+u'\n最新价:'+str(zz)+u'\n自最高价下跌超过8元。'
+                    #hpmsg = cc[0]+u': '+str(position)+u'张'+u'\n最新价:'+str(zz)+u'\n自最高价下跌超过9元。'
+                    hpmsg = cc[0]+u': '+str(zz)+u'，自最高价下跌超过9元。'
                     hpMsg.append(hpmsg)
 
     except Exception,e2:
