@@ -128,7 +128,7 @@ def getBP(cjje_list, avg_lists, date_txt):
     plt.xlabel('DATE')
     plt.xticks(())  # ignore xticks
     plt.ylabel('AMO')
-    plt.ylim(0, 220)
+    plt.ylim(0, 350)
     #plt.yticks(())  # ignore yticks
 
     # 设置数字标签
