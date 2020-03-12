@@ -15,27 +15,40 @@ sys.setdefaultencoding("utf-8")
 def CX(alias):
     
     cx = alias
-    tmp = []
+    clist = []
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, jian, jia, zhong, note, position, zgj, ll, code, AVG, LPrice from cb where Alias = '%s'" %cx
+        sql = "select name, code, jian, jia, zhong, note, position, AVG, zgj, ll, LPrice, HPrice from cb where Alias = '%s'" %cx
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
         conn.close()
 
         name = tmp[0][0] #转债名称
-        jian = tmp[0][1] #建仓价
-        jia = tmp[0][2] #建仓价
-        zhong = tmp[0][3] #建仓价
-        note = tmp[0][4] #说明
-        position = tmp[0][5] #持仓
-        avg = tmp[0][9] #平均成本价
-        zgj = tmp[0][6] #转股价
-        ll = tmp[0][7] #利率
-        code = tmp[0][8] #代码
-        lprice = tmp[0][10] #代码
+        clist.append(name)
+        code = tmp[0][1] #代码
+        clist.append(code)
+        jian = tmp[0][2] #建仓价
+        clist.append(jian)
+        jia = tmp[0][3] #加仓价
+        clist.append(jia)
+        zhong = tmp[0][4] #重仓价
+        clist.append(zhong)
+        note = tmp[0][5] #说明
+        clist.append(note)
+        position = tmp[0][6] #持仓
+        clist.append(position)
+        avg = tmp[0][7] #平均成本价
+        clist.append(avg)
+        zgj = tmp[0][8] #转股价
+        clist.append(zgj)
+        ll = tmp[0][9] #利率
+        clist.append(ll)
+        lprice = tmp[0][10] #新低价
+        clist.append(lprice)
+        hprice = tmp[0][11] #新高价
+        clist.append(hprice)
 
         print
         print u'名  称：', name
@@ -49,18 +62,9 @@ def CX(alias):
         print u'转股价：', zgj
         print u'利  率：', ll
         print u'新低价：', lprice
+        print u'新高价：', hprice
         print
-
-        tmp.append(jian)
-        tmp.append(jia)
-        tmp.append(zhong)
-        tmp.append(note)
-        tmp.append(position)
-        tmp.append(avg)
-        tmp.append(zgj)
-        tmp.append(ll)
-        tmp.append(lprice)
-        return tmp 
+        return clist
 
     except Exception, e :
         print 'CX() Error:', e
@@ -264,6 +268,26 @@ def Lprice(alias, lprice):
         print 'Lprice() ERROR :', e
         sys.exit()
 
+#对指定转债的'新高价'进行修改
+def Hprice(alias, hprice):
+    alias = alias
+    hprice = float(hprice)
+
+    try:
+        conn = sqlite3.connect('cb.db')
+        curs = conn.cursor()
+        sql = "UPDATE cb SET HPrice = ? WHERE Alias = ?"
+        curs.execute(sql, (hprice, alias))
+        conn.commit()
+        curs.close()
+        conn.close()
+
+        print u'新高价 已修改为：', str(hprice)
+
+    except Exception, e:
+        print 'Hprice() ERROR :', e
+        sys.exit()
+
 if  __name__ == '__main__': 
 
     msg = u"""
@@ -278,6 +302,8 @@ if  __name__ == '__main__':
     - 平均价 avg
     - 转股价 zgj
     - 利  率 ll
+    - 新低价 Lprice
+    - 新高价 Hprice
     """
     print
     print msg
@@ -289,17 +315,16 @@ if  __name__ == '__main__':
     #print cx
     
     print
-    print u'原 名称：', str(cx[0][0])
+    print u'原 名称：', str(cx[0])
     name = str(raw_input(u"请输入新 名称："))
     print name
     if name != '':
         Name(alias, name)
     else:
         print u'名称 没有修改！'
-    
 
     print 
-    print u'原 建仓价：', str(cx[1])
+    print u'原 建仓价：', str(cx[2])
     jian = raw_input(u"请输入新 建仓价：")
     if jian != '':
         Jian(alias, jian)
@@ -307,7 +332,7 @@ if  __name__ == '__main__':
         print u'建仓价 没有修改！'
 
     print
-    print u'原 加仓价：', str(cx[2])
+    print u'原 加仓价：', str(cx[3])
     jia = raw_input(u"请输入新 加仓价：")
     if jia != '':
         Jia(alias, jia)
@@ -315,7 +340,7 @@ if  __name__ == '__main__':
         print u'加仓价 没有修改！'
 
     print
-    print u'原 重仓价：', str(cx[3])
+    print u'原 重仓价：', str(cx[4])
     zhong = raw_input(u"请输入新 重仓价：")
     if zhong != '':
         Zhong(alias, zhong)
@@ -323,7 +348,7 @@ if  __name__ == '__main__':
         print u'重仓价 没有修改！'
 
     print
-    print u'原 说明：', str(cx[4])
+    print u'原 说明：', str(cx[5])
     note = unicode(raw_input(u"请输入新 说明："))
     if note != '':
         Note(alias, note)
@@ -331,7 +356,7 @@ if  __name__ == '__main__':
         print u'说明 没有修改！'
 
     print
-    print u'原 持仓：', str(cx[5])
+    print u'原 持仓：', str(cx[6])
     position = raw_input(u"请输入新 持仓：")
     if position != '':
         Position(alias, position)
@@ -339,7 +364,7 @@ if  __name__ == '__main__':
         print u'持仓 没有修改！'
 
     print
-    print u'原 平均价：', str(cx[6])
+    print u'原 平均价：', str(cx[7])
     avg = raw_input(u"请输入新 平均价：")
     if avg !='':
         AVG(alias, avg)
@@ -347,7 +372,7 @@ if  __name__ == '__main__':
         print u'平均价 没有修改！'
 
     print
-    print u'原 转股价：', str(cx[7])
+    print u'原 转股价：', str(cx[8])
     zgj = raw_input(u"请输入新 转股价：")
     if zgj != '':
         ZGJ(alias, zgj)
@@ -355,7 +380,7 @@ if  __name__ == '__main__':
         print u'转股价 没有修改！'
 
     print
-    print u'原 利  率：', str(cx[8])
+    print u'原 利  率：', str(cx[9])
     ll = raw_input(u"请输入新 利  率：")
     if ll != '':
         LL(alias, ll)
@@ -363,12 +388,20 @@ if  __name__ == '__main__':
         print u'转股价 没有修改！'
 
     print
-    print u'原 新低价：', str(cx[9])
-    lprice = raw_input(u"请输入新 建仓价：")
+    print u'原 新低价：', str(cx[10])
+    lprice = raw_input(u"请输入新 最低价：")
     if lprice != '':
         Lprice(alias, lprice)
     else:
         print u'新低价 没有修改！'
+
+    print
+    print u'原 新高价：', str(cx[11])
+    hprice = raw_input(u"请输入新 最高价：")
+    if lprice != '':
+        Lprice(alias, lprice)
+    else:
+        print u'新高价 没有修改！'
 
     print
     print u'全部修改结果如下：'
