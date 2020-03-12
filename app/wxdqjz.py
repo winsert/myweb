@@ -115,13 +115,13 @@ def WXDQJZ():
                 #cList.append(zg_zdf)
 
                 jian = cc[4] #建仓价
-                cList.append(jian)
+                #cList.append(jian)
                 jia = cc[5] #加仓价
-                cList.append(jia)
+                #cList.append(jia)
                 zhong = cc[6] #重仓价
-                cList.append(zhong)
+                #cList.append(zhong)
                 note = cc[7] #说明
-                cList.append(note)
+                #cList.append(note)
 
                 zgj = float(cc[8]) #转股价
                 #cList.append(zgj)
@@ -158,6 +158,16 @@ def WXDQJZ():
                 #cList.append(dqsyl)
                 dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
                 cList.insert(0, dqnh)
+    
+                qs = cc[16] #已强赎天数
+                #cList.append(qs)
+                #qss = cc[17] #剩余天数
+                #cList.append(qs)
+
+                for i in range(1,7): #由到期收益率计算转债的价格
+                    syl = 1 + (i * synx)/100
+                    dhj = round((dqjz/syl), 3)
+                    cList.append(dhj)
 
                 yjd = cc[19] #研究度
                 cList.append(yjd) #增加研究度
@@ -165,11 +175,11 @@ def WXDQJZ():
                 cList.append(aqd) #增加安全度
                 zgdm = cc[21] #评级
                 cList.append(zgdm) #增加评级
-        
-                qs = cc[16] #已强赎天数
-                #cList.append(qs)
-                #qss = cc[17] #剩余天数
-                #cList.append(qs)
+
+                cList.append(jian)
+                cList.append(jia)
+                cList.append(zhong)
+                cList.append(note)
 
                 #if cList[2] <= dqjz and jian > 70 and zhong > 0 : #转债现价<=到期价值 and 建仓价>70 and 重仓价>0
                 #if cList[2] <= dqjz and jian > 70 : #转债现价<=到期价值 and 建仓价>70
