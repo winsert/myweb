@@ -80,7 +80,7 @@ def getDQJZ(synx, shj,  ll):
     return dqjz
 
 # 主程序
-def WXDQJZ():
+def WXDQJZ0():
     
     ccList = []
     try:

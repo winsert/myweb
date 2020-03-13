@@ -80,6 +80,7 @@ APP/
     wxex.py         #用于查询交债信息
 
 	wxdqjz.py		#用于查询“最新价<到期价值”的转债
+    wxdqjz0.py		#用于查询“最新价<到期价值”的转债 zhonn=0
 
     zb.py           #用于转债值占比分析
 
@@ -116,5 +117,6 @@ templates/
     weather.html    #显示天气实况信息
 
 	dqjz.html		#显示“最新价<到期价值”的转债
+    dqjz0.html		#显示“最新价<到期价值”的转债,zhong=0
 
     zb.html         #显示转债市值占比分析的页面

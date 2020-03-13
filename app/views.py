@@ -16,7 +16,8 @@ from mcx_cx import getMCX #mobile查询可转债数据
 from mcx_ex import getMEX #mobile查询交换债数据
 from wxcx import getWXCX #WX查询可转债数据
 from wxex import getWXEX #WX查询交换债数据
-from wxdqjz import WXDQJZ #查询最新价<到期价值(建仓价>70,重仓价>0)的转债
+from wxdqjz import WXDQJZ #查询最新价<到期价值(重仓价>80)的转债
+from wxdqjz import WXDQJZ0 #查询最新价<到期价值(建仓价>80)的转债
 from cx_tk import getTK #查询所有可转债，交换债的条款
 from cx_nhg import getNHG #查询逆回购数据
 from cx_weather import getWeather #查询天气实况
@@ -76,6 +77,11 @@ def weixin():
 def dqjz():
     dqjz_list = WXDQJZ()
     return render_template("dqjz.html", wxdqjz=dqjz_list)
+
+@app.route('/dqjz0')
+def dqjz0():
+    dqjz_list0 = WXDQJZ0()
+    return render_template("dqjz0.html", wxdqjz0=dqjz_list0)
 
 @app.route('/weather')
 def weather():
