@@ -197,7 +197,7 @@ def WXDQJZ0():
         return ccList
 
 if __name__ == '__main__':
-    wxdqjz = WXDQJZ()
+    wxdqjz = WXDQJZ0()
     #print wxdqjz
     for msgs in wxdqjz:
         print
