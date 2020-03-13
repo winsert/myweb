@@ -163,7 +163,7 @@ def WXDQJZ0():
                 #qss = cc[17] #剩余天数
                 #cList.append(qs)
 
-                for i in range(1,5): #由到期收益率计算转债的价格
+                for i in range(1,4): #由到期收益率计算转债的价格
                     syl = 1 + (i * synx)/100
                     dhj = round((dqjz/syl), 3)
                     cList.append(dhj)
