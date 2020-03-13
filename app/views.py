@@ -81,7 +81,6 @@ def dqjz():
 @app.route('/dqjz0')
 def dqjz0():
     dqjz_list0 = WXDQJZ0()
-    print dqjz_list0
     return render_template("dqjz0.html", wxdqjz0=dqjz_list0)
 
 @app.route('/weather')
