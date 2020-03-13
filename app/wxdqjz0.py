@@ -176,6 +176,7 @@ def WXDQJZ0():
                 cList.append(zgdm) #增加评级
 
                 cList.append(jian)
+                cList.append(zhong)
                 cList.append(note)
 
                 if cList[2] <= dqjz and jian > 80.0 and qs <= 1: #转债现价<=到期价值 and 建仓价>70 and 还没有开始强赎
