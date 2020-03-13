@@ -168,8 +168,8 @@ def WXDQJZ0():
                     dhj = round((dqjz/syl), 3)
                     cList.append(dhj)
 
-                yjd = cc[19] #研究度
-                cList.append(yjd) #增加研究度
+                #yjd = cc[19] #研究度
+                #cList.append(yjd) #增加研究度
                 aqd = cc[20] #安全度
                 cList.append(aqd) #增加安全度
                 zgdm = cc[21] #评级
