@@ -398,8 +398,8 @@ if  __name__ == '__main__':
     print
     print u'原 新高价：', str(cx[11])
     hprice = raw_input(u"请输入新 最高价：")
-    if lprice != '':
-        Lprice(alias, lprice)
+    if hprice != '':
+        Hprice(alias, hprice)
     else:
         print u'新高价 没有修改！'
 
