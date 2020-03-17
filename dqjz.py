@@ -82,7 +82,7 @@ def getCX(alias):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, zgdm, zgj, dqr, shj, ll from cb0 where Alias = '%s'" %alias
+        sql = "select name, Code, zgcode, Prefix, zgdm, zgj, dqr, shj, ll, hs from cb0 where Alias = '%s'" %alias
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -105,6 +105,7 @@ def getCX(alias):
         synx = getSYNX(dqr) #计算剩余年限
         shj = tmp[0][7] #赎回价
         ll = tmp[0][8] #每年的利率
+        hstk = tmp[0][9] #回售条款
         dqjz = getDQJZ(synx, shj, ll) #计算到期价值
         dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
         dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
@@ -114,6 +115,9 @@ def getCX(alias):
         print u"剩余年限：" + str(synx) + u"年"
         print u"到期收益率：" + str(dqsyl) + u"％"
         print u"到期年化收益率：" + str(dqnh) + u"％"
+        print
+        print u"利率：" + ll
+        #print hstk
         print
 
         for i in range(1,7): #由到期收益率计算转债的价格
