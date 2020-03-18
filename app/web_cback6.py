@@ -54,5 +54,5 @@ def getCBack6():
         print 'CBack Error is :', e
 
 if __name__ == '__main__':
-    msg = getCBack()
-    print msg
+    msgs = getCBack6()
+    print msgs
