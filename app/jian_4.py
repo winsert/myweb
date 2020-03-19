@@ -152,7 +152,7 @@ def JIAN_4():
                 shj = cc[13] #赎回价
                 ll = cc[14] #每年的利率
                 dqjz = getDQJZ(synx, shj, ll) #计算到期价值
-                cList.insert(5, dqjz)
+                cList.insert(4, dqjz)
                 dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
                 #cList.append(dqsyl)
                 dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
