@@ -74,15 +74,15 @@ def getCB():
             LPrice = float(cc[9])-1.0 #最低价-0.5
             zz = float(getZZ(zzcode)) #查询转债价格
 
-            if zz <= jian and zz < LPrice and zz > jia : #满足建仓条件
+            if zz <= jian and zz < (LPrice * 0.9) and zz > jia : #满足建仓条件
                 zz_msg = cc[0]+u': '+str(position)+u'张'+u'\n新低价:'+str(zz)+u'  建仓价:'+str(jian)
                 msg.append(zz_msg)
                 getSQLite(code, zz)
-            elif zz <= jia and zz < LPrice and zz > zhong : #满足加仓条件
+            elif zz <= jia and zz < (LPrice * 0.9) and zz > zhong : #满足加仓条件
                 zz_msg = cc[0]+u': '+str(position)+u'张'+u'\n新低价:'+str(zz)+u'  加仓价:'+str(jia)
                 msg.append(zz_msg)
                 getSQLite(code, zz)
-            elif zz <= zhong and zz< LPrice and zz > 0: #满足重仓条件
+            elif zz <= zhong and zz< (LPrice * 0.9) and zz > 0: #满足重仓条件
                 zz_msg = cc[0]+u': '+str(position)+u'张'+u'\n新低价:'+str(zz)+u'  重仓价:'+str(zhong)
                 msg.append(zz_msg)
                 getSQLite(code, zz)
