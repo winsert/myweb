@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>MyWeb v0.1 - DQJZ</title>
+</head>
+<body>
+
+<h2>**************** 不挑戏、不逃戏、不入戏、不调戏 ****************</h2>
+
+<table border="1">
+<th>到期年化%</th>
+<th>名称</th>
+<th>最新价</th>
+<th>到期价值</th>
+<th>剩余年限</th>
+<th>年化1%</th>
+<th>年化2%</th>
+<th>年化3%</th>
+<th>研究度</th>
+<th>安全度</th>
+<th>评级</th>
+<th>建仓价</th>
+<th>三线建仓说明</th>
+
+{% for cb in wxdqjz %}
+<tr>
+{% for cc in cb %}
+<td>{{ cc }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+</table>
+<h3>仅供参考！</h3>
+</body>
+</html>
