@@ -145,8 +145,9 @@ def getCX(today):
         tmp = curs.fetchall()
         curs.close()
         conn.close()
-
+        i = 0
         for cb in tmp:
+            
             name = cb[0] #转债名称
             #print name
             code = cb[1] #转债代码
@@ -160,7 +161,7 @@ def getCX(today):
 
             if prefix != 'QS' and ce != 'e':
             #if cb[1] == '123005':
-
+                i = i+1
                 zgcode = cb[3]+cb[2] #正股代码
                 zg_s, zg_e, zg_h, zg_l = getZG(zgcode) #查询正股开盘，收盘，最高，最低价数据
                 #print name, zg_s, zg_e, zg_h, zg_l
@@ -184,7 +185,7 @@ def getCX(today):
                     print today, name, zz_s, zz_e, zz_h, zz_l, zz_z, zz_j, yjl, dqnh
 
                     getRECORD(today, code, zg_s, zg_e, zg_h, zg_l, zz_s, zz_e, zz_h, zz_l, zz_z, zz_j, yjl, dqnh)
-        
+        print i
     except Exception, e:
         print e
         
