@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 # 本程序用于画出每日可交易转债成交金额的折线图
-
 __author__ = 'winsert@163.com'
 
 import sqlite3, datetime
@@ -13,19 +12,20 @@ def getCode():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select Code, Prefix, ce from cb0"
+        sql = "select ce, code, zzcode, Prefix from cb"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
         conn.close()
 
         code_list = []
-        
+
         for code in tmp:
-            if code[1] != 'QS' and code[2] != 'e': #过滤已强赎的转债和交换债
+            if code[0] != 'e' and code[1] != 0: #过滤已强赎的转债和交换债
             #if code[2] != 'e': #过滤交换债
-                code_list.append(code[0])
+                code_list.append(code[2])
         
+        #print len(code_list)
         #print code_list
         return code_list
                
@@ -43,6 +43,7 @@ def getCbData(n, codes):
         for code in codes:
             #print code
             code_tab ='c' + code
+            #print code_tab
             conn = sqlite3.connect('dd.db')
             curs = conn.cursor()
             sql = "select today, zz_j from %s ORDER BY today desc limit %r, 1" % (code_tab, n) #按倒序查询成交金额
@@ -103,29 +104,30 @@ def getCB():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, zgj, dqr, shj, ll, ce, zgqsr from cb0"
+        sql = "select ce, code, name, zzcode, Prefix, dqr, shj, ll from cb"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
         conn.close()
 
         for cb in tmp:
-            #name = cb[0] #转债名称
-            code = cb[1] #转债代码
-            prefix = cb[3]
+            ce = cb[0] #区别转债和交换债
+            code = cb[1] #特征代码
+            name = cb[2] #转债名称
+            zzcode = cb[3] #转债代码
+            prefix = cb[4]
             dqr = cb[5] #到期日
             shj = cb[6] #赎回价
             ll = cb[7] #每年的利率
-            ce = cb[8] #区别转债和交换债
 
-            if prefix != 'QS' and ce != 'e':
-            #if cb[1] == '123015':
+            if code != 0 and ce != 'e': #过滤已强赎的转债和交换债
+            #if zzcode == '123015':
                 #print name
                 synx = getSYNX(dqr) #计算剩余年限
                 dqjz = getDQJZ(synx, shj, ll) #计算到期价值
                 #print dqjz
                 tmp_list = []
-                tmp_list.append(code)
+                tmp_list.append(zzcode)
                 tmp_list.append(dqjz)
                 tmp_lists.append(tmp_list)
         return tmp_lists
@@ -205,7 +207,6 @@ if __name__ == '__main__':
         cjje_list.append(cjje[1]) #成交金额
 
         cb_lists = getCB() #查询转债的代码和到期价值
-        #cb_list = [['127009', 115.3], [u'113527', 120.7]]
         #print cb_lists
 
         rates = getRate(cjje[0], cb_lists) #查询日期,转债代码
