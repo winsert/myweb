@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 # 本程序用于过滤“当前价>建仓价 and <＝建仓价＋4.0元”的可转债
-
 __author__ = 'winsert@163.com'
 
 import sqlite3, urllib2
@@ -81,120 +80,106 @@ def getDQJZ(synx, shj,  ll):
 
 # 主程序
 def JIAN_4():
-    
-    ccList = []
+    cbLists = []
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, yjd, aqd, zgdm from cb0 ORDER BY Code"
+        #sql = "select name, zzcode, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, yjd, aqd, zgdm from cb ORDER BY zzcode where code>0"
+        sql = "select * from cb where ce='c' and code>0"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
         conn.close()
         #print tmp
 
-        for cc in tmp:
-            cList = []
-            if cc[3] != 'QS' and cc[15] != 'e':
-                name = cc[0] #名称
-                cList.append(name)
-                code = cc[1] #代码
-                #cList.append(code)
-                zzcode = cc[3]+cc[1]
-                zz = float(getZZ(zzcode)) #查询转债价格
-                cList.append(zz)
+        for cb in tmp:
+            cbList = []
+            name = cb[3] #名称
+            cbList.append(name)
+            #zzcode = cb[5] #转债代码
+            #cbList.append(zzcode)
+            zzcode = cb[7]+cb[5]
+            zz = float(getZZ(zzcode)) #查询转债价格
+            cbList.append(zz)
 
-                zg_code = cc[3]+cc[2] #前缀+正股代码
-                zg_name, zg_price, zg_zdf = getZG(zg_code) #查询正股价格, 涨跌幅
-                #cList.append(zg_name)
-                zgcode = cc[2] #正股代码
-                #cList.append(zgcode)
-                #cList.append(zg_price)
-                zg_zdf = round(zg_zdf, 2)
-                #cList.append(zg_zdf)
+            #zgcode = cb[6] #正股代码
+            #cbList.append(zgcode)
+            zg_code = cb[7]+cb[6] #前缀+正股代码
+            zg_name, zg_price, zg_zdf = getZG(zg_code) #查询正股价格, 涨跌幅
+            #cbList.append(zg_name)
+            #cbList.append(zg_price)
+            #zg_zdf = round(zg_zdf, 2)
+            #cbList.append(zg_zdf)
 
-                jian = cc[4] #建仓价
-                cList.append(jian)
-                jia = cc[5] #加仓价
-                #cList.append(jia)
-                zhong = cc[6] #重仓价
-                #cList.append(zhong)
-                note = cc[7] #说明
-                cList.append(note)
+            jian = cb[12] #建仓价
+            cbList.append(jian)
+            jia = cb[13] #加仓价
+            #cbList.append(jia)
+            zhong = cb[14] #重仓价
+            #cbList.append(zhong)
+            note = cb[15] #说明
+            cbList.append(note)
 
-                zgj = float(cc[8]) #转股价
-                #cList.append(zgj)
-                #cList.insert(7, zgj)
-                zgqsr = cc[18] #转股起始日
-                #cList.append(zgqsr)
+            zgqsr = cb[16] #转股起始日
+            #cbList.append(zgqsr)
+            zgj = float(cb[17]) #转股价
+            #cbList.append(zgj)
 
-                if zg_price != 0:
-                    zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
-                    #cList.append(zgjz)
-                    yjl = round((zz-zgjz)/zgjz*100, 2) #计算溢价率
-                    #cList.append(yjl)
-                    #cList.insert(6, yjl)
-                    #qsj = round((zgj * 1.3), 2) #计算强赎价
-                    #qsl = round((zg/zgj -1)*100, 2) #计算强赎率
-                else:
-                    yjl = u"停牌"
-                    #cList.insert(6, yjl)
-                    #cList[5] = u"停牌"
+            if zg_price != 0:
+                zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
+                #cbList.append(zgjz)
+                yjl = round((zz-zgjz)/zgjz*100, 2) #计算溢价率
+                #cbList.append(yjl)
+                #qsj = round((zgj * 1.3), 2) #计算强赎价
+                #qsl = round((zg/zgj -1)*100, 2) #计算强赎率
+            else:
+                yjl = u"停牌"
+                #cbList.append(yjl)
+                #cbList[5] = u"停牌"
 
-                position = cc[12] #已购买的张数
-                #cList.append(position)
+                #position = cb[8] #已购买的张数
+                #cbList.append(position)
 
-                dqr = cc[11] #到期日
-                #cList.append(dqr)
-                synx = getSYNX(dqr) #计算剩余年限
-                cList.append(synx)
+            dqr = cb[19] #到期日
+            #cbList.append(dqr)
+            synx = getSYNX(dqr) #计算剩余年限
+            cbList.append(synx)
         
-                shj = cc[13] #赎回价
-                ll = cc[14] #每年的利率
-                dqjz = getDQJZ(synx, shj, ll) #计算到期价值
-                cList.insert(4, dqjz)
-                dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
-                #cList.append(dqsyl)
-                dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
-                cList.insert(0, dqnh)
+            shj = cb[20] #赎回价
+            ll = cb[24] #每年的利率
+            dqjz = getDQJZ(synx, shj, ll) #计算到期价值
+            cbList.insert(4, dqjz)
+            dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
+            #cbList.append(dqsyl)
+            dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
+            cbList.insert(0, dqnh)
     
-                qs = cc[16] #已强赎天数
-                #cList.append(qs)
-                #qss = cc[17] #剩余天数
-                #cList.append(qs)
-                '''
-                for i in range(1,4): #由到期收益率计算转债的价格
-                    syl = 1 + (i * synx)/100
-                    dhj = round((dqjz/syl), 3)
-                    cList.append(dhj)
-                '''
-                yjd = cc[19] #研究度
-                cList.append(yjd) #增加研究度
-                aqd = cc[20] #安全度
-                cList.append(aqd) #增加安全度
-                zgdm = cc[21] #评级
-                cList.append(zgdm) #增加评级
+            qs = cb[25] #强赎计数
+            yjd = cb[27] #研究度
+            cbList.append(yjd) #增加研究度
+            aqd = cb[28] #安全度
+            cbList.append(aqd) #增加安全度
+            pj = cb[30] #评级
+            cbList.append(pj) #增加评级
+            if cbList[2] > jian and cbList[2] <= (jian+4.0) and zhong > 80.0 and qs <= 10: #转债现价<=建仓价+4.0元 and 重仓价>0 and 还没有完成强赎
+                #print cbList
+                cbLists.append(cbList)
 
-                if cList[2] > jian and cList[2] <= (jian+4.0) and zhong > 80.0 and qs <= 1: #转债现价<=建仓价+4.0元 and 重仓价>0 and 还没有开始强赎
-                    ccList.append(cList)
-                    #print ccList
-
-        ccList.sort()
-        #print ccList
-        return ccList
+        cbLists.sort()
+        #print cbLists
+        return cbLists
 
     except Exception, e :
-        print name
-        error_msg = u'主程序报错：'+str(e)
+        error_msg = u'JIAN_4()报错：'+str(e)
         print error_msg
-        #ccList.append(name)
-        ccList.append(e)
-        return ccList
+        #cbList.append(name)
+        cbLists.append(e)
+        return cbLists
 
 if __name__ == '__main__':
-    wxdqjz = WXDQJZ()
-    #print wxdqjz
-    for msgs in wxdqjz:
+    cbLists = JIAN_4()
+    
+    for msgs in cbLists:
         print
         for msg in msgs:
             print msg
