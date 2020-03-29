@@ -15,7 +15,7 @@ from cx_ex import getEX #查询交换债数据
 from mcx_cx import getMCX #mobile查询可转债数据
 from mcx_ex import getMEX #mobile查询交换债数据
 from wxcx import getWXCX #WX查询可转债数据
-from wxex import getWXEX #WX查询交换债数据
+#from wxex import getWXEX #WX查询交换债数据
 from wxdqjz import WXDQJZ #查询最新价<到期价值(重仓价>80)的转债
 from wxdqjz0 import WXDQJZ0 #查询最新价<到期价值(建仓价>80)的转债
 from jian_4 import JIAN_4 #当前价>建仓价 and <＝建仓价＋4.0元的可转债
@@ -71,8 +71,8 @@ def mobi():
 @app.route('/weixin')
 def weixin():
     wxcx_list = getWXCX()
-    wxex_list = getWXEX()
-    return render_template("weixin.html", wxcx=wxcx_list, wxex=wxex_list)
+    #wxex_list = getWXEX()
+    return render_template("weixin.html", wxcx=wxcx_list)
 
 @app.route('/dqjz')
 def dqjz():

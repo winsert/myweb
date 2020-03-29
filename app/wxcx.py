@@ -107,9 +107,9 @@ def getWXCX():
             jian = cb[12] #建仓价
             cbList.append(jian)
             jia = cb[13] #加仓价
-            #cbList.append(jia)
+            cbList.append(jia)
             zhong = cb[14] #重仓价
-            #cbList.append(zhong)
+            cbList.append(zhong)
             note = cb[15] #说明
             cbList.append(note)
 
@@ -138,7 +138,7 @@ def getWXCX():
             shj = cb[20] #赎回价
             ll = cb[24] #每年的利率
             dqjz = getDQJZ(synx, shj, ll) #计算到期价值
-            cbList.insert(4, dqjz)
+            cbList.append(dqjz)
             dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
             #cbList.append(dqsyl)
             dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
