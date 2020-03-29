@@ -84,7 +84,6 @@ def JIAN_4():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        #sql = "select name, zzcode, zgcode, Prefix, jian, jia, zhong, Note, zgj, hsqsr, hsj, dqr, position, shj, ll, ce, qs, qss, zgqsr, yjd, aqd, zgdm from cb ORDER BY zzcode where code>0"
         sql = "select * from cb where ce='c' and code>0"
         curs.execute(sql)
         tmp = curs.fetchall()
@@ -137,9 +136,6 @@ def JIAN_4():
                 #cbList.append(yjl)
                 #cbList[5] = u"停牌"
 
-                #position = cb[8] #已购买的张数
-                #cbList.append(position)
-
             dqr = cb[19] #到期日
             #cbList.append(dqr)
             synx = getSYNX(dqr) #计算剩余年限
@@ -161,6 +157,7 @@ def JIAN_4():
             cbList.append(aqd) #增加安全度
             pj = cb[30] #评级
             cbList.append(pj) #增加评级
+            
             if cbList[2] > jian and cbList[2] <= (jian+4.0) and zhong > 80.0 and qs <= 10: #转债现价<=建仓价+4.0元 and 重仓价>0 and 还没有完成强赎
                 #print cbList
                 cbLists.append(cbList)
