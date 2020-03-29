@@ -82,7 +82,7 @@ def getCX(alias):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, Code, zgcode, Prefix, zgdm, zgj, dqr, shj, ll, hs from cb0 where Alias = '%s'" %alias
+        sql = "select name, zzcode, zgcode, Prefix, pj, zgj, dqr, shj, ll, hs, yjd, aqd from cb where Alias = '%s'" %alias
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
@@ -90,14 +90,14 @@ def getCX(alias):
         #print tmp
          
         name = tmp[0][0] #名称
-        code = tmp[0][1] #转债代码
+        zzcode = tmp[0][1] #转债代码
         zgcode = tmp[0][2] #正股代码
         prefix = tmp[0][3] #前缀
-        zzcode = prefix+code #前缀+转债代码
-        zz = float(getZZ(zzcode)) #查询转债价格
+        zz_code = prefix+zzcode #前缀+转债代码
+        zz = float(getZZ(zz_code)) #查询转债价格
         zg_code = prefix+zgcode #前缀+正股代码
         #zg_price = getZG(zg_code) #查询正股价格
-        zgdm = tmp[0][4] #评价
+        pj = tmp[0][4] #评价
         zgj = float(tmp[0][5]) #转股价
         #zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
         #yjl = round((zz-zgjz)/zgjz*100, 2) #计算溢价率
@@ -109,8 +109,16 @@ def getCX(alias):
         dqjz = getDQJZ(synx, shj, ll) #计算到期价值
         dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
         dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
-        print u"转债名称：" + name 
-        print u"最新价格：" + str(zz) + u"元"
+
+        yjd = tmp[0][10] #研究度
+        aqd = tmp[0][11] #安全度
+
+        print u"转债名称：" + name
+        print u"转债评级：" + pj
+        print u"研 究 度：" + yjd
+        print u"安 全 度：" + aqd
+
+        print u"\n最新价格：" + str(zz) + u"元"
         print u"到期价值：" + str(dqjz) + u"元"
         print u"剩余年限：" + str(synx) + u"年"
         print u"到期收益率：" + str(dqsyl) + u"％"
@@ -123,7 +131,7 @@ def getCX(alias):
         for i in range(1,7): #由到期收益率计算转债的价格
             syl = 1 + (i * synx)/100
             dhj = round((dqjz/syl), 3)
-            print u"到期年化收益率为" + str(i) +u"%的转债价格：" + str(dhj) + u"元"
+            print u"到期年化收益率为" + str(i) +u"%时,转债价格：" + str(dhj) + u"元"
         print
 
     except Exception, e :
