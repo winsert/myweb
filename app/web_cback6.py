@@ -18,8 +18,8 @@ def getCBack6():
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        #sql = "select Alias, name, Prefix, Code, zgcode, position, AVG, HPrice, LPrice, jian, jia, zhong, Note, zgqsr, zgj, hsqsr, hsj, dqr, shj, ll, zgjxt, qzsh, hs, ce from cb"
-        sql = "select name, Prefix, Code, zgcode, position, AVG, HPrice, LPrice, jian, jia, zhong, Note, zgqsr, zgj, hsqsr, hsj, dqr, shj, ll, zgjxt, qzsh, hs, zgdm, yjd, aqd, jp from cb0"
+        #sql = "select name, Prefix, zzcode, zgcode, position, AVG, HPrice, LPrice, jian, jia, zhong, Note, zgqsr, zgj, hsqsr, hsj, dqr, shj, ll, zgjxt, qzsh, hs, zgdm, yjd, aqd, jp from cb"
+        sql = "select name, Prefix, zzcode, zgcode, position, AVG, HPrice, LPrice, jian, jia, zhong, Note, zgqsr, zgj, hsqsr, hprice, dqr, shj, ll, zgjxt, qzsh, hs, pj, yjd, aqd, jp from cb"
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
