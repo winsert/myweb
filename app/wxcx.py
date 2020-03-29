@@ -143,8 +143,6 @@ def getWXCX():
             #cbList.append(dqsyl)
             dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
             cbList.insert(0, dqnh)
-        
-            qs = cb[25] #强赎计数
 
             if cbList[2] <= jian : #转债现价<=建仓价
                 cbLists.append(cbList)
