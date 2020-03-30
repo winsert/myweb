@@ -34,7 +34,7 @@ if __name__ == '__main__':
     
     itchat.login(enableCmdQR=2)
 
-    startMsg = u'不挑戏，不逃戏，不入戏，不调戏'
+    startMsg = u'莫听穿林打叶声!'
     restStartMsg = 'Have a good Lunch !'
     restEndMsg = 'Good Afternoon !'
     endMsg =  "I will come back !"
@@ -92,8 +92,8 @@ if __name__ == '__main__':
             itchat.send(restEndMsg, toUserName = userName)
 
         #print datetime.now()
-        print time.asctime(time.localtime(time.time())) #显示查询时间
         print '\n'
+        print time.asctime(time.localtime(time.time())) #显示查询时间
         
         # 高价折扣和三线分析：
         i = 0
