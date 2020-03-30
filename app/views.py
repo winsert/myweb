@@ -13,7 +13,7 @@ from cx_ex import getEX #查询交换债数据
 #from qcx_cx import getQCX #查询所有可转债数据
 #from qcx_ex import getQEX #查询所有交换债数据
 from mcx_cx import getMCX #mobile查询可转债数据
-from mcx_ex import getMEX #mobile查询交换债数据
+#from mcx_ex import getMEX #mobile查询交换债数据
 from wxcx import getWXCX #WX查询可转债数据
 #from wxex import getWXEX #WX查询交换债数据
 from wxdqjz import WXDQJZ #查询最新价<到期价值(重仓价>80)的转债
@@ -65,8 +65,7 @@ def mobi():
     cpu = get_cpu_temp()
     index_list = getIndex()
     mcx = getMCX()
-    mex = getMEX()
-    return render_template("mobile.html", cpu =cpu, index_list=index_list, cx=mcx, ex=mex)
+    return render_template("mobile.html", cpu =cpu, index_list=index_list, cx=mcx)
 
 @app.route('/weixin')
 def weixin():

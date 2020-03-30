@@ -144,11 +144,11 @@ def getWXCX():
             dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
             cbList.insert(0, dqnh)
 
-            if cbList[2] <= jian : #转债现价<=建仓价
+            if zz <= jian : #转债现价<=建仓价
                 cbLists.append(cbList)
 
         cbLists.sort()
-        #print ccList
+        #print cbLists
         return cbLists
 
     except Exception, e :
