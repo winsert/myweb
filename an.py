@@ -93,6 +93,7 @@ if __name__ == '__main__':
 
         #print datetime.now()
         print time.asctime(time.localtime(time.time())) #显示查询时间
+        print '\n'
         
         # 高价折扣和三线分析：
         i = 0
@@ -103,10 +104,11 @@ if __name__ == '__main__':
                 #print 'an.py is running.'
                 itchat.send(msg, toUserName = userName)
             
-            if newHPrice > cblist[10]: #如果转债最新价>原最高价，则修改新高价
-                list3[i][10] = newHPrice
-            if newLPrice < cblist[11]: #如果转债最新价<原最低价，则修改新低价
-                list3[i][11] = newLPrice
+            #if newHPrice > cblist[10]: #如果转债最新价>原最高价，则修改新高价
+            list3[i][10] = newHPrice
+            #if newLPrice < cblist[11]: #如果转债最新价<原最低价，则修改新低价
+            list3[i][11] = newLPrice
+            
             if abs(zdf) > cblist[-1]: #如果转债最新价<原最低价，则修改新低价
                 msg = cblist[3]+u' 涨跌幅='+str(zdf)+'%!'
                 print msg
