@@ -55,4 +55,6 @@ def getCBack6():
 
 if __name__ == '__main__':
     msgs = getCBack6()
-    print msgs
+    for msg in msgs.split('#'):
+        print msg
+        print
