@@ -27,6 +27,8 @@ dd.db       #记录转债日成交信息的数据库
 
 SendMail.py #用邮件发送三线、高价折扣通知
 
+upcb.py     用于修改转债信息:表cb
+
 APP/
     __init__.py     #初始化文件
 
