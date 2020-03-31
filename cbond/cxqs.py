@@ -100,7 +100,7 @@ def getQS(listCB):
     try:
         for cblist in listCB:
             name = cblist[3] #转债名称
-            code = cblist[5] #转债代码
+            code = cblist[2] #特征码
             zzcode = cblist[7]+cblist[5] #前缀+转债代码
             zgcode = cblist[7]+cblist[6] #前缀+正股代码
             hprice = float(cblist[10]) #原最高价
@@ -113,16 +113,18 @@ def getQS(listCB):
             zz, zz_hprice, zz_lprice = getZZ(zzcode) #查询转债收盘价,当日最高价,当日最低价
 
             if zz_hprice > hprice: #更新最高价
-                #print name, 'zz_hprice' , zz_hprice, hprice
+                #print name, code, 'zz_hprice' , zz_hprice, hprice
                 modiHPrice(code, zz_hprice)
-                msg = name+u' 最高价更新为:'+str(zz_hprice)+u'元。'
-                msglist.append(msg)
+                if code == 3: #持仓转债
+                    msg = name+u' 最高价更新为:'+str(zz_hprice)+u'元。'
+                    msglist.append(msg)
                 
             if zz_lprice < lprice: #更新最低价
-                #print name, 'zz_lprice', zz_lprice, lprice
+                #print name, code, 'zz_lprice', zz_lprice, lprice
                 modiLPrice(code, zz_lprice)
-                msg = name+u' 最低价更新为:'+str(zz_lprice)+u'元。'
-                msglist.append(msg)
+                if code == 3: #持仓转债
+                    msg = name+u' 最低价更新为:'+str(zz_lprice)+u'元。'
+                    msglist.append(msg)
 
             y = zgqsr.split('-') #转换为日期格式
             d = datetime(int(y[0]), int(y[1]), int(y[2]), 0, 0)
