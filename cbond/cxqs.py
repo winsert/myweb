@@ -101,6 +101,7 @@ def getQS(listCB):
         for cblist in listCB:
             name = cblist[3] #转债名称
             code = cblist[2] #特征码
+            zcode = cblist[5] #转债代码
             zzcode = cblist[7]+cblist[5] #前缀+转债代码
             zgcode = cblist[7]+cblist[6] #前缀+正股代码
             hprice = float(cblist[10]) #原最高价
@@ -138,17 +139,19 @@ def getQS(listCB):
                     if qsl > 1.3 and qs < 15 and qss >= 1:
                         nqs = qs + 1
                         nqss = qss -1
-                        qsDay(nqs, nqss, code)
-                        msg = name+u' 强赎'+str(nqs)+u'天,剩:'+str(nqss)+u'天。'
-                        msglist.append(msg)
-                    elif qsl > 1.3 and qs >= 15 and qss >= 0:
+                        qsDay(nqs, nqss, zcode)
+                        if code == 3: #持仓转债
+                            msg = name+u' 强赎'+str(nqs)+u'天,剩:'+str(nqss)+u'天。'
+                            msglist.append(msg)
+                    elif qsl > 1.3 and qs >= 15 and qss >= 0 and code==3:
                         msg = name+u' 已完成强赎!!!'
                         msglist.append(msg)
                     elif qsl < 1.3 and qs >= 1 and qss >= 1:
                         nqss = qss -1
-                        qssDay(nqss, code)
-                        msg = name+u' 强赎'+str(qs)+u'天,剩:'+str(nqss)+u'天。'
-                        msglist.append(msg)
+                        qssDay(nqss, zcode)
+                        if code == 3: #持仓转债
+                            msg = name+u' 强赎'+str(qs)+u'天,剩:'+str(nqss)+u'天。'
+                            msglist.append(msg)
 
         return msglist
 
