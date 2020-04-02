@@ -115,14 +115,14 @@ def getQS(listCB):
 
             if zz_hprice > hprice: #更新最高价
                 #print name, code, 'zz_hprice' , zz_hprice, hprice
-                modiHPrice(code, zz_hprice)
+                modiHPrice(zcode, zz_hprice)
                 if code == 3: #持仓转债
                     msg = name+u' 最高价更新为:'+str(zz_hprice)+u'元。'
                     msglist.append(msg)
                 
             if zz_lprice < lprice: #更新最低价
                 #print name, code, 'zz_lprice', zz_lprice, lprice
-                modiLPrice(code, zz_lprice)
+                modiLPrice(zcode, zz_lprice)
                 if code == 3: #持仓转债
                     msg = name+u' 最低价更新为:'+str(zz_lprice)+u'元。'
                     msglist.append(msg)
@@ -141,6 +141,7 @@ def getQS(listCB):
                         nqss = qss -1
                         qsDay(nqs, nqss, zcode)
                         if code == 3: #持仓转债
+                            print name, qsl
                             msg = name+u' 强赎'+str(nqs)+u'天,剩:'+str(nqss)+u'天。'
                             msglist.append(msg)
                     elif qsl > 1.3 and qs >= 15 and qss >= 0 and code==3:
