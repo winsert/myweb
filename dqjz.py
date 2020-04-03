@@ -82,36 +82,42 @@ def getCX(alias):
     try:
         conn = sqlite3.connect('cb.db')
         curs = conn.cursor()
-        sql = "select name, zzcode, zgcode, Prefix, pj, zgj, dqr, shj, ll, hs, yjd, aqd from cb where Alias = '%s'" %alias
+        #sql = "select name, zzcode, zgcode, Prefix, pj, zgj, dqr, shj, ll, hs, yjd, aqd from cb where Alias = '%s'" %alias
+        sql = "select * from cb where Alias = '%s'" %alias
         curs.execute(sql)
         tmp = curs.fetchall()
         curs.close()
         conn.close()
         #print tmp
          
-        name = tmp[0][0] #名称
-        zzcode = tmp[0][1] #转债代码
-        zgcode = tmp[0][2] #正股代码
-        prefix = tmp[0][3] #前缀
+        name = tmp[0][3] #名称
+        zzcode = tmp[0][5] #转债代码
+        zgcode = tmp[0][6] #正股代码
+        prefix = tmp[0][7] #前缀
         zz_code = prefix+zzcode #前缀+转债代码
         zz = float(getZZ(zz_code)) #查询转债价格
         zg_code = prefix+zgcode #前缀+正股代码
         #zg_price = getZG(zg_code) #查询正股价格
-        pj = tmp[0][4] #评价
-        zgj = float(tmp[0][5]) #转股价
+
+        jian = tmp[0][12] #建仓价
+        jia = tmp[0][13] #加仓价
+        zhong = tmp[0][14] #重仓价
+        note = tmp[0][15] #说明
+
+        zgj = float(tmp[0][17]) #转股价
         #zgjz = round((100/zgj)*zg_price, 2) #计算转股价值
         #yjl = round((zz-zgjz)/zgjz*100, 2) #计算溢价率
-        dqr = tmp[0][6] #到期日
+        dqr = tmp[0][19] #到期日
         synx = getSYNX(dqr) #计算剩余年限
-        shj = tmp[0][7] #赎回价
-        ll = tmp[0][8] #每年的利率
-        hstk = tmp[0][9] #回售条款
+        shj = tmp[0][20] #赎回价
+        ll = tmp[0][24] #每年的利率
         dqjz = getDQJZ(synx, shj, ll) #计算到期价值
         dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
         dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
 
-        yjd = tmp[0][10] #研究度
-        aqd = tmp[0][11] #安全度
+        yjd = tmp[0][27] #研究度
+        aqd = tmp[0][28] #安全度
+        pj = tmp[0][30] #评价
 
         print u"转债名称：" + name
         print u"转债评级：" + pj
@@ -122,9 +128,11 @@ def getCX(alias):
         print u"到期价值：" + str(dqjz) + u"元"
         print u"剩余年限：" + str(synx) + u"年"
         print u"到期收益率：" + str(dqsyl) + u"％"
-        print u"到期年化收益率：" + str(dqnh) + u"％"
-        print
-        print u"利率：" + ll
+        print u"到期年化收益率：" + str(dqnh) + u"％\n"
+        
+        print u"建"+str(jian)+" /"+u"加"+str(jia)+" /"+u"重"+str(zhong)
+        print note
+        print u"\n利率：" + ll
         #print hstk
         print
 
