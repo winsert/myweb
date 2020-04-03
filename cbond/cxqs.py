@@ -141,7 +141,7 @@ def getQS(listCB):
                         nqss = qss -1
                         qsDay(nqs, nqss, zcode)
                         if code == 3: #持仓转债
-                            print name, qsl
+                            #print name, qsl
                             msg = name+u' 强赎'+str(nqs)+u'天,剩:'+str(nqss)+u'天。'
                             msglist.append(msg)
                     elif qsl > 1.3 and qs >= 15 and qss >= 0 and code==3:
@@ -151,7 +151,7 @@ def getQS(listCB):
                         nqss = qss -1
                         qssDay(nqss, zcode)
                         if code == 3: #持仓转债
-                            msg = name+u' 强赎'+str(qs)+u'天,剩:'+str(nqss)+u'天。'
+                            msg = name+u' 强赎'+str(qs)+u'天,剩:'+str(nqss)+u'-1天。'
                             msglist.append(msg)
 
         return msglist
