@@ -110,6 +110,8 @@ cond/               #用于保存转债相关的模块
 
     readcb.py       #将表转换为列表的模块
 
+    sina.py         #查询可转债、可交换债、股票的价格信息
+
 
 templates/
     index.html
