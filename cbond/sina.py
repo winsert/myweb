@@ -14,9 +14,9 @@ def bsObjForm(url):
     return html
 
 # 用于查询转债的价格信息
-def getZZ(zzcode):
+def getZZ(zz_code):
     msgs = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] #[今开,昨收,当前,最高,最低,涨跌幅]
-    url = "http://hq.sinajs.cn/list="+zzcode #生成用于查询的URL
+    url = "http://hq.sinajs.cn/list="+zz_code #生成用于查询的URL
     try:
         resp = bsObjForm(url)
         tmp = resp.split(',')
@@ -27,7 +27,7 @@ def getZZ(zzcode):
         msgs[3] = float(tmp[4]) #获取转债当日最高价
         msgs[4] = float(tmp[5]) #获取转债当日最低价
         msgs[5] = round((msgs[2]/msgs[1] - 1) * 100, 2) #涨跌幅
-        print name, msgs
+        #print name, msgs
         return msgs
     except:
         name = "getZZ is error."
@@ -35,9 +35,9 @@ def getZZ(zzcode):
         return msgs
 
 # 用于计算正股涨跌幅和溢价率
-def getZG(zgcode):
+def getZG(zg_code):
     msgs = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] #[今开,昨收,当前,最高,最低,涨跌幅]
-    url = "http://hq.sinajs.cn/list="+zgcode #生成用于查询的URL
+    url = "http://hq.sinajs.cn/list="+zg_code #生成用于查询的URL
     try:
         resp = bsObjForm(url)
         tmp = resp.split(',')
@@ -48,7 +48,7 @@ def getZG(zgcode):
         msgs[3] = float(tmp[4]) #获取股票当日最高价
         msgs[4] = float(tmp[5]) #获取股票当日最低价
         msgs[5] = round((msgs[2]/msgs[1] - 1) * 100, 2) #涨跌幅
-        print name, msgs
+        #print name, msgs
         return msgs
     except:
         name = "getZG is error."
