@@ -152,7 +152,7 @@ if  __name__ == '__main__':
     for k, v in cbdict.items():
         print u"\n原" + k, v[1]
         msg = u"新" + k
-        v[1] = raw_input(msg)
+        v[1] = unicode(raw_input(msg))
         if v[1] != '':
             UpDate(alias, k, v[0], v[1])
         else:
