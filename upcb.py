@@ -157,3 +157,6 @@ if  __name__ == '__main__':
             UpDate(alias, k, v[0], v[1])
         else:
             print "  " + k + u" 没有修改！"
+    
+    print u'\n全部修改结果如下：'
+    getcb(alias)
