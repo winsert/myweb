@@ -7,6 +7,8 @@ adjust1.py  #用于修改转债信息:表cb
 
 an.py       #用微信发送三线、高价折扣通知
 
+box.py      #用tkinter显示转债信息
+
 daysT.py    #用于向dd数据库的cbt表中增加数据
 dayScat.py  #用于画转债溢价率的散点图
 daysBP.py   #从dd.db提取数据，计算成交金额，用于画转债成交量的直方图
