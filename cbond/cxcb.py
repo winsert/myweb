@@ -4,7 +4,7 @@
 # 查询可转债、可交换债的最新价是否满足高从折扣和三线条件的模块
 __author__ = 'winsert@163.com'
 
-import urllib2
+import urllib2, sqlite3
 from readcb import readCB #读出 code=3(持仓) 可转债,可交换债的所有信息
 
 # 用于解析URL页面
@@ -54,9 +54,23 @@ def getZG(zgcode, zz, zgj):
         print "getZG() is error !"
         return zg_zdf, yjl
 
+#对cb.db中HPrice(最高价)的值进行修改
+def modiHPrice(zzcode, HPrice):
+    try:
+        conn = sqlite3.connect('cb.db')
+        curs = conn.cursor()
+        sql = "UPDATE cb SET HPrice = %r WHERE zzcode = %s" % (HPrice, zzcode) 
+        curs.execute(sql)
+        conn.commit()
+        curs.close()
+        conn.close()
+    except Exception, e:
+        print 'modiHPrice ERROR :', e
+
 # 对可转债数据进行高价折扣和三线分析
 def getCB(cblist):
     name = cblist[3] #转债名称
+    zcode = cblist[5] #转债代码
     zzcode = cblist[7]+cblist[5] #前缀+转债代码
     zgcode = cblist[7]+cblist[6] #前缀+正股代码
     HPrice = float(cblist[10]) #原最高价
@@ -85,6 +99,7 @@ def getCB(cblist):
     elif zz > jian and zz < 130.00 and HPrice > 130.0: #跌破130预警
         msg = name+u':'+str(zz)+u' < 130元！'
         newHPrice = 130.00 #将最高价重置为130.00
+        modiHPrice(zcode, newHPrice)
     elif zz > jia and zz <= jian and zz < (LPrice - 0.5) : #满足建仓条件
         msg = name+u':新低价'+str(zz)+u',建仓价:'+str(jian)
         newLPrice = zz #新最低价
