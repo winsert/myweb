@@ -88,6 +88,8 @@ if  __name__ == '__main__':
                     tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
                 elif i>0 and j==6 and (cblists[i][6] > 3.0 or cblists[i][6] < -3.0):
                     tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
+                elif i>0 and j==8 and cblists[i][8] < 0.0:
+                    tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
                 else:
                     tk.Label(window, text=cblists[i][j], font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
 
