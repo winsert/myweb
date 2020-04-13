@@ -139,6 +139,8 @@ def getWXCX():
             ll = cb[24] #每年的利率
             dqjz = getDQJZ(synx, shj, ll) #计算到期价值
             cbList.append(dqjz)
+            pj = cb[30]
+            cbList.append(pj)
             dqsyl = round((dqjz/zz - 1) * 100, 2) #计算到期收益率
             #cbList.append(dqsyl)
             dqnh = round(dqsyl/synx, 2) #计算到期年化收益率
