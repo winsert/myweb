@@ -109,7 +109,8 @@ if __name__ == '__main__':
             #if newLPrice < cblist[11]: #如果转债最新价<原最低价，则修改新低价
             list3[i][11] = newLPrice
             
-            if abs(zdf) > cblist[-1] + 1.0: #如果转债 新涨跌幅的绝对值>原涨跌幅＋1.0
+            #if abs(zdf) > cblist[-1] + 1.0: #如果转债 新涨跌幅的绝对值>原涨跌幅＋1.0
+            if abs(zdf) > cblist[-1]: #如果转债 新涨跌幅的绝对值>原涨跌幅
                 msg = cblist[3]+u' 涨跌幅='+str(zdf)+'%!'
                 print msg
                 itchat.send(msg, toUserName = userName)
