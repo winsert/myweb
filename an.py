@@ -47,8 +47,8 @@ if __name__ == '__main__':
     account = itchat.get_friends()
     for user in account:
         #if user['NickName'] == 'ken':
-        if user['NickName'] == 'Andy':
-        #if user['NickName'] == 'andy130':
+        #if user['NickName'] == 'Andy':
+        if user['NickName'] == 'andy130':
             userName = user['UserName']
     
     now_time = datetime.now()
@@ -110,7 +110,7 @@ if __name__ == '__main__':
             list3[i][11] = newLPrice
             
             #if abs(zdf) > cblist[-1] + 1.0: #如果转债 新涨跌幅的绝对值>原涨跌幅＋1.0
-            if abs(zdf) > cblist[-1]: #如果转债 新涨跌幅的绝对值>原涨跌幅
+            if abs(zdf) > cblist[-1] and zdf != -100: #如果转债 新涨跌幅的绝对值>原涨跌幅
                 msg = cblist[3]+u' 涨跌幅='+str(zdf)+'%!'
                 print msg
                 itchat.send(msg, toUserName = userName)
