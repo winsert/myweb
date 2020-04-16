@@ -237,7 +237,7 @@ def getNX():
         record.append(len(cbs))
         rate = round(float(len(cbs))/float(len(tmp)), 4) * 100
         #print len(tmp), len(cbs), rate, round(cjje / 100000000, 2)
-        print today + u' 共有'+str(len(tmp))+u'只转债，其中'+str(len(cbs))+u'只转债的收盘价>到期价值，占比：'+str(rate)+'%。'
+        print today + u' 共有'+str(len(tmp))+u'只转债，其中'+str(len(cbs))+u'只转债的收盘价>到期价值，占比：'+str(rate)+u'%。'
         NXSQL(record)
     except Exception, e:
         print 'getNX()_error is : ', e
