@@ -32,6 +32,8 @@ SendMail.py #用邮件发送三线、高价折扣通知
 
 upcb.py     用于修改转债信息:表cb
 
+yjl.py      用于查询计算指定转债的平均溢价率
+
 APP/
     __init__.py     #初始化文件
 
