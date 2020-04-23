@@ -100,18 +100,18 @@ def getCB(cblist):
         msg = name+u':'+str(zz)+u' < 130元！'
         newHPrice = 130.00 #将最高价重置为130.00
         modiHPrice(zcode, newHPrice)
-    elif zz > jia and zz <= jian and zz <= LPrice: #满足建仓条件
+    elif zz > jia and zz <= jian and zz < LPrice: #满足建仓条件
         msg = name+u':新低价'+str(zz)+u',建仓价:'+str(jian)
         newLPrice = zz #新最低价
-    elif zz > zhong and zz <= jia and zz < (LPrice - 1.0) : #满足加仓条件
+    elif zz > zhong and zz <= jia and zz < LPrice: #满足加仓条件
         msg = name+u':新低价'+str(zz)+u',加仓价:'+str(jia)
         newLPrice = zz #新最低价
-    elif zz > 0 and zz <= zhong and zz< (LPrice * 0.9): #满足重仓条件
+    elif zz > 0 and zz <= zhong and zz< LPrice: #满足重仓条件
         msg = name+u':新低价'+str(zz)+u',重仓价:'+str(zhong)
         newLPrice = zz #新最低价
     elif zz == 0.0:
         msg = 'ok'
-        print name + u" 停牌！\n"
+        print name + u" 停牌 或 无成交价！\n"
     else:
         msg = 'ok'
         #print name+u" 最新价:"+str(zz)+u"元，原最低价:"+str(HPrice)+u"元不变!\n"
