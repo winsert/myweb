@@ -68,7 +68,7 @@ def uplist(cblists):
 if  __name__ == '__main__': 
 
     #自选转债
-    cbs = [127015, 113511, 123025, 110056, 110031, 128029, 128045, 127011]
+    cbs = [127015, 128092, 123025, 110056, 110031, 128029, 128045, 127011]
 
     #得到自选转债完整数据
     cblists = getCBlists(cbs)
@@ -91,7 +91,7 @@ if  __name__ == '__main__':
                 elif i>0 and j==8 and cblists[i][8] < 0.0:
                     tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
                 else:
-                    tk.Label(window, text=cblists[i][j], font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
+                    tk.Label(window, text=cblists[i][j], bg='white', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
 
         cblists.pop(0)
         cblists = uplist(cblists)
