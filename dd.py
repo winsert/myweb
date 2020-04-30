@@ -57,6 +57,7 @@ def getZZ(zzCode):
     try:
         resp = bsObjForm(url)
         tmp_list = resp.split(',')
+        #print tmp_list
         zz_s = tmp_list[1] #获取开盘价
         zz_e = tmp_list[3] #获取收盘价
         zz_h = tmp_list[4] #获取最高价
@@ -147,7 +148,7 @@ def getCX(today):
         for cb in tmp:
             i = i+1
             name = cb[0] #转债名称
-            #print name
+            print u"正在查询："+name
             code = cb[1] #转债代码
             zgcode = cb[2] #正股代码
             prefix = cb[3] #前缀
@@ -166,17 +167,24 @@ def getCX(today):
                 zzcode = cb[3]+cb[1] #转债代码
                 zz_s, zz_e, zz_h, zz_l, zz_z, zz_j = getZZ(zzcode) #查询转债开盘，收盘，最高,最低价，成交张数，成交金额等数据
                 #print name, zz_s, zz_e, zz_h, zz_l, zz_z, zz_j
-                    
+                
                 zgjz = (100/float(zgj))*float(zg_e) #计算转股价值
-                yjl = str(round((float(zz_e) - zgjz)/zgjz*100, 2)) #计算溢价率
+                if float(zz_e) == 0.0: #转债停牌
+                    yjl = 0.0
+                else:
+                    yjl = str(round((float(zz_e) - zgjz)/zgjz*100, 2)) #计算溢价率
                 #print name, zgjz, yjl
 
                 synx = getSYNX(dqr) #计算剩余年限
                 dqjz = getDQJZ(synx, shj, ll) #计算到期价值
                 #print name, dqjz
 
-                dqsyl = round((dqjz/float(zz_e) - 1) * 100, 3) #计算到期收益率
-                dqnh = str(round(dqsyl/synx, 2)) #计算到期年化收益率
+                if float(zz_e) == 0: #转债停牌
+                    dqnh = 0.0
+                else:
+                    dqsyl = round((dqjz/float(zz_e) - 1) * 100, 3) #计算到期收益率
+                    dqnh = str(round(dqsyl/synx, 2)) #计算到期年化收益率
+                
                 print today, name, zz_s, zz_e, zz_h, zz_l, zz_z, zz_j, yjl, dqnh
 
                 getRECORD(today, code, zg_s, zg_e, zg_h, zg_l, zz_s, zz_e, zz_h, zz_l, zz_z, zz_j, yjl, dqnh)
