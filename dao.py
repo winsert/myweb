@@ -37,7 +37,7 @@ def getCBlists():
             zz_zdf = float(zz[5])
 
             jian = cb[12] #建仓价
-            #print cb[3], zz_price, jian
+            print cb[3], cb[5], zz_price
 
             #转债现价<=建仓价 or (>=130.0 and 持仓(特征码＝3)>0)
             if zz_price <= jian or (zz_price >=130.0 and code == 3):
