@@ -26,7 +26,7 @@ def getCBlists():
         curs.close()
         conn.close()
         #print tmp
-
+        i = 0
         for cb in tmp:
             cblist = []
             code = cb[2] #特征码            
@@ -37,10 +37,11 @@ def getCBlists():
             zz_zdf = float(zz[5])
 
             jian = cb[12] #建仓价
-            print cb[3], cb[5], zz_price
+            i = i+1
+            print i, cb[3], cb[5], zz_price
 
             #转债现价<=建仓价 or (>=130.0 and 持仓(特征码＝3)>0)
-            if zz_price <= jian or (zz_price >=130.0 and code == 3):
+            if zz_price <= jian and zz_price > 0.0 or (zz_price >=130.0 and code == 3):
                 dqr = cb[19] #到期日
                 synx = getSYNX(dqr) #计算剩余年限
                 shj = cb[20] #赎回价
@@ -104,13 +105,15 @@ def show(cblists):
 if  __name__ == '__main__': 
 
     print u"\n正在查询中......\n"
-    #得到自选转债完整数据
+    #查询符合条件的转债数据
     cblists = getCBlists()
+    print u"\n共查询到"+str(len(cblists))+u"个符合条件的转债。\n"
 
     window = tk.Tk()
     window.title("DAO")
     window.geometry("930x500")
 
-    show(cblists) #用于grid 放置方法显示转债信息
+    #用于grid 放置方法显示转债信息
+    show(cblists)
     
     window.mainloop()
