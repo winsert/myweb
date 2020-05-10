@@ -123,6 +123,7 @@ def getCX(alias):
         print u"转债评级：" + pj
         print u"研 究 度：" + yjd
         print u"安 全 度：" + aqd
+        print u"到期赎回：" + str(shj)
 
         print u"\n最新价格：" + str(zz) + u"元"
         print u"到期价值：" + str(dqjz) + u"元"
@@ -146,6 +147,6 @@ def getCX(alias):
         print u'主程序报错：'+str(e)
 
 if __name__ == '__main__':
-    alias = raw_input('输入可转债的简称缩写：')
+    alias = raw_input('\n输入可转债的简称缩写：')
     print
     dqjz = getCX(alias)
