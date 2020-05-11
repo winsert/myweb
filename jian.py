@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
-# 本程序通过tk模块显示满足三线、复式的转债信息
+# 本程序通过tk模块显示接近建仓线的转债信息
 __author__ = 'winsert@163.com'
 
 import Tkinter as tk
@@ -15,7 +15,7 @@ from dqjz import getSYNX #计算转债剩余年限
 from dqjz import getDQJZ #计算转债到期价值
 
 #查询转债信息
-def getCBlists():
+def getCBlists(cha):
     cblists = []
     try:
         conn = sqlite3.connect('cb.db')
@@ -41,7 +41,7 @@ def getCBlists():
             print i, cb[3], cb[5], zz_price
 
             #转债现价<=建仓价 or (>=130.0 and 持仓(特征码＝3)>0)
-            if zz_price <= jian and zz_price > 0.0 or (zz_price >=130.0 and code == 3):
+            if zz_price <= (jian+cha) and zz_price >= jian and code > 1:
                 dqr = cb[19] #到期日
                 synx = getSYNX(dqr) #计算剩余年限
                 shj = cb[20] #赎回价
@@ -55,6 +55,7 @@ def getCBlists():
         
                 name = cb[3] #名称
                 cblist.append(name)
+                cblist.append(jian)
 
                 cblist.append(zz_price) #＋转债最新价
                 cblist.append(zz_zdf) #＋转债最新价
@@ -75,9 +76,10 @@ def getCBlists():
 
                 #print cblist
                 cblists.append(cblist)
+                #print name, cblist
         
         cblists.sort()
-        words = ['年化', '年限', '到期价值', '名称', '最新价', '涨跌幅', '正股价', '涨跌幅', '强赎价', '溢价率', '安全度', '评级']
+        words = ['年化', '年限', '到期价值', '名称', '建仓价', '最新价', '涨跌幅', '正股价', '涨跌幅', '强赎价', '溢价率', '安全度', '评级']
         cblists.insert(0, words)
         #print cblists
         return cblists
@@ -90,28 +92,35 @@ def getCBlists():
 def show(cblists):
     
     for i in range(len(cblists)):
-        for j in range(12):
-            if i>0 and j==4 and (cblists[i][4] > 130.0):
-                tk.Label(window, text=cblists[i][j], fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
-            elif i>0 and j==5 and (cblists[i][5] > 3.0 or cblists[i][5] < -3.0):
+        for j in range(13):
+            if i>0 and j==4:
+                tk.Label(window, text=cblists[i][j], bg='green', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
+            elif i>0 and j==6 and (cblists[i][6] > 3.0 or cblists[i][6] < -3.0):
                 tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
-            elif i>0 and j==7 and (cblists[i][7] > 3.0 or cblists[i][7] < -3.0):
+            elif i>0 and j==8 and (cblists[i][8] > 3.0 or cblists[i][8] < -3.0):
                 tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
-            elif i>0 and j==9 and cblists[i][9] < 0.0:
+            elif i>0 and j==10 and cblists[i][10] < 0.0:
                 tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
             else:
                 tk.Label(window, text=cblists[i][j], bg='white', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
 
 if  __name__ == '__main__':
 
+    cha = raw_input(u"\n距离建仓线多少钱？")
+
+    if cha == '': #为空
+        cha = 3.0
+    else:
+        cha = float(cha)
+
     print u"\n正在查询中......\n"
     #查询符合条件的转债数据
-    cblists = getCBlists()
+    cblists = getCBlists(cha)
     print u"\n共查询到"+str(len(cblists)-1)+u"个符合条件的转债。\n"
 
     window = tk.Tk()
     window.title("DAO")
-    window.geometry("930x500")
+    window.geometry("990x600")
 
     #用于grid 放置方法显示转债信息
     show(cblists)
