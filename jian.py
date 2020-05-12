@@ -109,7 +109,7 @@ if  __name__ == '__main__':
     cha = raw_input(u"\n距离建仓线多少钱？")
 
     if cha == '': #为空
-        cha = 3.0
+        cha = 1.0
     else:
         cha = float(cha)
 
