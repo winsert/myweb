@@ -106,7 +106,7 @@ def show(cblists):
 
 if  __name__ == '__main__':
 
-    cha = raw_input(u"\n距离建仓线多少钱？")
+    cha = raw_input(u"\n距离建仓线多少钱(默认=1) ？ ")
 
     if cha == '': #为空
         cha = 1.0
@@ -120,7 +120,10 @@ if  __name__ == '__main__':
 
     window = tk.Tk()
     window.title("DAO")
-    window.geometry("990x600")
+    
+    wh = "990x"+str((len(cblists)-4)*100)
+    #window.geometry("990x500")
+    window.geometry(wh)
 
     #用于grid 放置方法显示转债信息
     show(cblists)

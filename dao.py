@@ -111,7 +111,10 @@ if  __name__ == '__main__':
 
     window = tk.Tk()
     window.title("DAO")
-    window.geometry("930x500")
+
+    wh = "930x"+str(abs(len(cblists)-10)*100)
+    #window.geometry("930x700")
+    window.geometry(wh)
 
     #用于grid 放置方法显示转债信息
     show(cblists)
