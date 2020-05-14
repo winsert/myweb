@@ -94,7 +94,7 @@ def qssDay(nqss, code):
     except Exception, e:
         print 'qssDay ERROR :', e
 
-# 强赎分析,更新最高价，最低价
+# 强赎,复式分析,更新最高价，最低价
 def getQS(listCB):
     msglist = []
     try:
@@ -117,15 +117,23 @@ def getQS(listCB):
                 #print name, code, 'zz_hprice' , zz_hprice, hprice
                 modiHPrice(zcode, zz_hprice)
                 if code == 3: #持仓转债
-                    msg = name+u' 最高价更新为:'+str(zz_hprice)+u'元。'
+                    msg = name+u' 最高价更新为:'+str(zz_hprice)+u'元。\n'
                     msglist.append(msg)
                 
             if zz_lprice < lprice: #更新最低价
                 #print name, code, 'zz_lprice', zz_lprice, lprice
                 modiLPrice(zcode, zz_lprice)
                 if code == 3: #持仓转债
-                    msg = name+u' 最低价更新为:'+str(zz_lprice)+u'元。'
+                    msg = name+u' 最低价更新为:'+str(zz_lprice)+u'元。\n'
                     msglist.append(msg)
+
+            if hprice>140.0 and zz <= hprice-9: #复式分析:自最高价下跌超过9元
+                #print name, code, 'zz=' , zz
+                modiHPrice(zcode, hprice-9) #修改新最高价
+                if code == 3: #持仓转债
+                    msg = name+u':'+str(zz)+u'\n自最高价下跌超过9元。\n'
+                    msglist.append(msg)
+            
 
             y = zgqsr.split('-') #转换为日期格式
             d = datetime(int(y[0]), int(y[1]), int(y[2]), 0, 0)
@@ -142,16 +150,16 @@ def getQS(listCB):
                         qsDay(nqs, nqss, zcode)
                         if code == 3: #持仓转债
                             #print name, qsl
-                            msg = name+u' 强赎'+str(nqs)+u'天,剩:'+str(nqss)+u'天。'
+                            msg = name+u' 强赎'+str(nqs)+u'天,剩:'+str(nqss)+u'天。\n'
                             msglist.append(msg)
                     elif qsl > 1.3 and qs >= 15 and qss >= 0 and code==3:
-                        msg = name+u' 已完成强赎!!!'
+                        msg = name+u' 已完成强赎!!!\n'
                         msglist.append(msg)
                     elif qsl < 1.3 and qs >= 1 and qss >= 1:
                         nqss = qss -1
                         qssDay(nqss, zcode)
                         if code == 3: #持仓转债
-                            msg = name+u' 强赎'+str(qs)+u'天,剩:'+str(nqss)+u'-1天。'
+                            msg = name+u' 强赎'+str(qs)+u'天,剩:'+str(nqss)+u'-1天。\n'
                             msglist.append(msg)
 
         return msglist
@@ -164,6 +172,7 @@ def getQS(listCB):
 
 if __name__ == '__main__':
     
+    print u"\n正在查询中......"
     # code!= 0 的转债列表(非强赎转债)
     listCB = readCB(-1)
 
