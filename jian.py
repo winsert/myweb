@@ -15,7 +15,7 @@ from dqjz import getSYNX #计算转债剩余年限
 from dqjz import getDQJZ #计算转债到期价值
 
 #查询转债信息
-def getCBlists(cha):
+def getCBlists():
     cblists = []
     try:
         conn = sqlite3.connect('cb.db')
@@ -41,7 +41,7 @@ def getCBlists(cha):
             print i, cb[3], cb[5], zz_price
 
             #转债现价<=建仓价 or (>=130.0 and 持仓(特征码＝3)>0)
-            if zz_price <= (jian+cha) and zz_price >= jian and code > 1:
+            if zz_price <= jian and zz_price>0 and code > 2:
                 dqr = cb[19] #到期日
                 synx = getSYNX(dqr) #计算剩余年限
                 shj = cb[20] #赎回价
@@ -94,6 +94,8 @@ def show(cblists):
     for i in range(len(cblists)):
         for j in range(13):
             if i>0 and j==4:
+                tk.Label(window, text=cblists[i][j], bg='grey', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
+            elif i>0 and j==5:
                 tk.Label(window, text=cblists[i][j], bg='green', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
             elif i>0 and j==6 and (cblists[i][6] > 3.0 or cblists[i][6] < -3.0):
                 tk.Label(window, text=cblists[i][j], bg='green', fg='red', font=('Arial', 18)).grid(row=i, column=j, padx=3, pady=3, ipadx=3, ipady=3)
@@ -106,16 +108,10 @@ def show(cblists):
 
 if  __name__ == '__main__':
 
-    cha = raw_input(u"\n距离建仓线多少钱(默认=1) ？ ")
-
-    if cha == '': #为空
-        cha = 1.0
-    else:
-        cha = float(cha)
-
-    print u"\n正在查询中......\n"
+    print u"\n正在查询满足建仓的转债(code>2)......\n"
     #查询符合条件的转债数据
-    cblists = getCBlists(cha)
+    cblists = getCBlists()
+    
     print u"\n共查询到"+str(len(cblists)-1)+u"个符合条件的转债。\n"
 
     window = tk.Tk()
