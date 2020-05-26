@@ -15,7 +15,7 @@ from dqjz import getSYNX #计算转债剩余年限
 from dqjz import getDQJZ #计算转债到期价值
 
 #查询转债信息
-def getCBlists():
+def getCBlists(Code):
     cblists = []
     try:
         conn = sqlite3.connect('cb.db')
@@ -41,7 +41,7 @@ def getCBlists():
             print i, cb[3], cb[5], zz_price
 
             #转债现价<=建仓价 or (>=130.0 and 持仓(特征码＝3)>0)
-            if zz_price <= jian and zz_price>0 and code > 2:
+            if zz_price <= jian and zz_price>0 and code > Code:
                 dqr = cb[19] #到期日
                 synx = getSYNX(dqr) #计算剩余年限
                 shj = cb[20] #赎回价
@@ -108,14 +108,21 @@ def show(cblists):
 
 if  __name__ == '__main__':
 
-    print u"\n正在查询满足建仓的转债(code>2)......\n"
-    #查询符合条件的转债数据
-    cblists = getCBlists()
+    Code = raw_input(u"\n特征码code(默认为0) = ？ ")
     
-    print u"\n共查询到"+str(len(cblists)-1)+u"个符合条件的转债。\n"
+    if Code == '': #为空
+        Code = 0
+    else:
+        Code = int(Code)
+    
+    print u"\n正在查询特征码code > "+str(Code)+u" 的转债 ......\n"
+    #查询符合条件的转债数据
+    cblists = getCBlists(Code)
+    
+    print u"\n特征码code > "+str(Code)+u" ：共查询到"+str(len(cblists)-1)+u"个符合条件的转债。\n"
 
     window = tk.Tk()
-    window.title("DAO")
+    window.title("JIANk")
     
     wh = "990x"+str((len(cblists)-4)*100)
     #window.geometry("990x500")

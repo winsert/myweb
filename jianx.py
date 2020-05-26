@@ -121,7 +121,7 @@ if  __name__ == '__main__':
     print u"\n共查询到"+str(len(cblists)-1)+u"个符合条件的转债。\n"
 
     window = tk.Tk()
-    window.title("DAO")
+    window.title("JIAN-X")
     
     wh = "990x"+str((len(cblists)-4)*100)
     #window.geometry("990x500")
